@@ -1,0 +1,8 @@
+{
+  "name": "Modul Ajar Berbasis Cinta",
+  "description": "Comprehensive web application for MI teachers to create AI-powered teaching modules integrated with Kurikulum Berbasis Cinta and digital media.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

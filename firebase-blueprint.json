@@ -1,0 +1,92 @@
+{
+  "entities": {
+    "appData": {
+      "title": "AppData",
+      "description": "Data aplikasi KBC MI yang disinkronkan di semua perangkat",
+      "type": "object",
+      "properties": {
+        "modules": {
+          "type": "array",
+          "description": "Daftar Modul Ajar"
+        },
+        "materiBank": {
+          "type": "array",
+          "description": "Bank Materi & Capaian Pembelajaran"
+        },
+        "kopSurat": {
+          "type": "object",
+          "description": "Pengaturan Kop Surat Instansi"
+        },
+        "ttd": {
+          "type": "object",
+          "description": "Pengaturan Tanda Tangan & Pejabat"
+        },
+        "teachers": {
+          "type": "array",
+          "description": "Daftar Guru & Mata Pelajaran"
+        },
+        "customMapel": {
+          "type": "array",
+          "description": "Daftar Mata Pelajaran Custom"
+        },
+        "customTahunAjaran": {
+          "type": "array",
+          "description": "Pilihan Tahun Ajaran"
+        },
+        "activeTahunAjaran": {
+          "type": "string",
+          "description": "Tahun Ajaran Aktif"
+        },
+        "teacherPin": {
+          "type": "string",
+          "description": "PIN Akses Guru"
+        },
+        "customOgImage": {
+          "type": "string",
+          "description": "Logo Favicon & Open Graph Custom"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "Waktu Pembaruan Terakhir"
+        }
+      }
+    },
+    "modulItem": {
+      "title": "ModulItem",
+      "description": "Dokumen modul ajar individual",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "ID Unik Modul Ajar"
+        },
+        "topik": {
+          "type": "string",
+          "description": "Judul / Topik Pembelajaran"
+        },
+        "mataPelajaran": {
+          "type": "string",
+          "description": "Mata Pelajaran MI"
+        },
+        "kelas": {
+          "type": "string",
+          "description": "Kelas / Fase"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "Waktu Update"
+        }
+      }
+    }
+  },
+  "firestore": {
+    "/app_settings/{settingId}": {
+      "schema": "appData",
+      "description": "Pengaturan dan data terpusat aplikasi"
+    },
+    "/modules/{moduleId}": {
+      "schema": "modulItem",
+      "description": "Koleksi modul ajar individual"
+    }
+  }
+}
