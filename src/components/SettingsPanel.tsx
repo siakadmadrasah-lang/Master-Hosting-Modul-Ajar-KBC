@@ -143,7 +143,6 @@ interface SettingsPanelProps {
   onDataRestored?: () => void;
   onOpenMadrasahModal?: () => void;
   onOpenWelcomeBanner?: () => void;
-  onPreviewInitialLoader?: () => void;
   activeMadrasah?: MadrasahItem;
   userSession?: UserSession | null;
 }
@@ -159,7 +158,6 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
   onDataRestored,
   onOpenMadrasahModal,
   onOpenWelcomeBanner,
-  onPreviewInitialLoader,
   activeMadrasah,
   userSession
 }) => {
@@ -1518,17 +1516,6 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
           </p>
         </div>
         <div className="flex items-center space-x-2 shrink-0 flex-wrap gap-y-2">
-          {onPreviewInitialLoader && (
-            <button
-              type="button"
-              onClick={onPreviewInitialLoader}
-              className="bg-emerald-900/60 hover:bg-emerald-900/90 border border-emerald-400/40 px-3 py-1.5 rounded-xl text-xs font-black text-emerald-100 flex items-center space-x-1.5 transition-all cursor-pointer backdrop-blur-xs active:scale-95 shadow-xs"
-              title="Pratinjau Layar Pemuat Awal Elegan (Initial Page Loader)"
-            >
-              <Sparkles className="w-3.5 h-3.5 text-emerald-300 animate-pulse" />
-              <span>Layar Pemuat Awal</span>
-            </button>
-          )}
           {onOpenWelcomeBanner && (
             <button
               type="button"

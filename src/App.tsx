@@ -61,7 +61,6 @@ import { OfficialRegisterModal } from './components/OfficialRegisterModal';
 import { CurriculumLiteracyModal } from './components/CurriculumLiteracyModal';
 import { WelcomeBanner } from './components/WelcomeBanner';
 import { QuizResultsRecapModal } from './components/QuizResultsRecapModal';
-import { InitialPageLoader } from './components/InitialPageLoader';
 
 import {
   Sparkles,
@@ -159,9 +158,6 @@ export default function App() {
 
   const [activeTab, setActiveTab] = useState<NavTabType>('my-modules');
   const [selectedModule, setSelectedModule] = useState<ModulAjarCinta | null>(null);
-
-  // Initial Page Loader state
-  const [isInitialLoading, setIsInitialLoading] = useState<boolean>(true);
 
   // Student Mode State
   const [isStudentMode, setIsStudentMode] = useState<boolean>(() => {
@@ -507,15 +503,6 @@ export default function App() {
     };
   }, [activeMadrasahId]);
 
-  // Initial Page Loader Timer
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsInitialLoading(false);
-    }, 1400);
-
-    return () => clearTimeout(timer);
-  }, []);
-
   const handleSaveModulesList = (newModules: ModulAjarCinta[]) => {
     setModules(newModules);
     saveModules(newModules);
@@ -720,13 +707,6 @@ export default function App() {
     return (
       <AndroidFrame>
         <div className="w-full flex-1 flex flex-col overflow-hidden bg-slate-900 text-slate-100 relative">
-          {/* Elegant Initial Page Loader */}
-          <InitialPageLoader
-            isLoading={isInitialLoading}
-            onFinish={() => setIsInitialLoading(false)}
-            madrasahName={activeMadrasah.nama}
-          />
-
           {/* Distinct Student Welcome Banner */}
           <WelcomeBanner
             isOpen={showWelcomeBanner}
@@ -864,13 +844,6 @@ export default function App() {
   return (
     <AndroidFrame>
       <div className="w-full flex-1 min-h-0 flex flex-col overflow-hidden bg-slate-950 text-slate-100 relative">
-        {/* Elegant Initial Page Loader */}
-        <InitialPageLoader
-          isLoading={isInitialLoading}
-          onFinish={() => setIsInitialLoading(false)}
-          madrasahName={activeMadrasah.nama}
-        />
-
         {/* Toast Notification */}
         {toastMsg && (
           <div className="fixed top-4 left-1/2 -translate-x-1/2 z-50 bg-slate-900 text-white border border-emerald-500 px-4 py-2.5 rounded-2xl shadow-2xl flex items-center space-x-2.5 text-xs font-bold animate-bounce">
@@ -1565,7 +1538,6 @@ export default function App() {
               onDataRestored={handleReloadAllData}
               onOpenMadrasahModal={() => setShowMadrasahModal(true)}
               onOpenWelcomeBanner={() => setShowWelcomeBanner(true)}
-              onPreviewInitialLoader={() => setIsInitialLoading(true)}
               activeMadrasah={activeMadrasah}
               userSession={userSession}
             />
