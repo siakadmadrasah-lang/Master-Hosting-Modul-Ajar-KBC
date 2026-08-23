@@ -4,6 +4,7 @@ import { Printer, ArrowLeft, Download, Heart, CheckCircle, Sparkles, Save, Check
 import { getEducationalSvgIllustration, handleImageError, getReliableImageUrl } from '../utils/imageHelper';
 import { loadDocumentProtectionConfig, verifyDocumentProtectionPassword, isDocumentUnlockedInSession, setDocumentUnlockedInSession } from '../utils/storage';
 import { loadUserSession } from '../utils/auth';
+import { AnimatedToast } from './AnimatedToast';
 
 interface DocumentPrintViewProps {
   modul: ModulAjarCinta;
@@ -46,7 +47,7 @@ export const DocumentPrintView: React.FC<DocumentPrintViewProps> = ({ modul, onC
   };
 
   const [savedStatus, setSavedStatus] = useState<boolean>(true);
-  const [showSaveToast, setShowSaveToast] = useState<boolean>(false);
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [isJustSaved, setIsJustSaved] = useState<boolean>(false);
 
   const handleManualSave = () => {
@@ -54,10 +55,9 @@ export const DocumentPrintView: React.FC<DocumentPrintViewProps> = ({ modul, onC
       onSaveModule(modul);
     }
     setSavedStatus(true);
-    setShowSaveToast(true);
     setIsJustSaved(true);
+    setToastMessage(`Modul Ajar "${modul?.identitas?.materi || modul?.judul || 'KBC'}" berhasil disimpan ke penyimpanan database & cloud sync!`);
     setTimeout(() => {
-      setShowSaveToast(false);
       setIsJustSaved(false);
     }, 2500);
   };
@@ -494,17 +494,12 @@ export const DocumentPrintView: React.FC<DocumentPrintViewProps> = ({ modul, onC
         </div>
       </div>
 
-      {showSaveToast && (
-        <div className="w-full max-w-4xl bg-emerald-600 text-white px-4 py-2 text-xs font-bold flex items-center justify-between shadow-lg print:hidden animate-fade-in">
-          <div className="flex items-center space-x-2">
-            <CheckCircle className="w-4 h-4 text-emerald-200" />
-            <span>Modul Ajar berhasil disimpan ke database & cloud sync!</span>
-          </div>
-          <button onClick={() => setShowSaveToast(false)} className="text-emerald-100 hover:text-white font-bold text-xs">
-            ✕
-          </button>
-        </div>
-      )}
+      {/* Animated Save Toast */}
+      <AnimatedToast
+        message={toastMessage}
+        onClose={() => setToastMessage(null)}
+        duration={3500}
+      />
 
       {/* Official Document Sheet */}
       <div id="document-to-print" className="printable-document w-full max-w-4xl bg-white text-slate-900 p-6 sm:p-10 rounded-b-2xl shadow-2xl font-sans print:shadow-none print:rounded-none print:p-6 print:max-w-none text-xs leading-relaxed space-y-6">
@@ -586,48 +581,50 @@ export const DocumentPrintView: React.FC<DocumentPrintViewProps> = ({ modul, onC
             II. SEKSI IDENTIFIKASI
           </h3>
           <div className="space-y-3 border border-slate-300 p-3.5 rounded-sm bg-white">
+            {/* Kesiapan Murid */}
             <div>
               <p className="font-bold text-slate-900 text-xs mb-1.5 border-b border-slate-200 pb-1">
-                1. Kesiapan Murid (Asesmen Diagnostik Awal & Diferensiasi):
+                Kesiapan Murid (Asesmen Diagnostik Awal & Diferensiasi):
               </p>
               <div className="space-y-2 pl-1">
                 <div className="bg-emerald-50/70 border-l-4 border-emerald-600 p-2.5 rounded-r">
                   <p className="font-bold text-emerald-950 text-[11px] mb-0.5 flex items-center gap-1">
                     <span className="w-2 h-2 rounded-full bg-emerald-600 inline-block"></span>
-                    Paham Utuh (Kategori Mahir):
+                    Kategori Mahir (Paham Utuh):
                   </p>
-                  <p className="text-slate-800 text-[11px] leading-relaxed">
-                    {kesiapanMurid?.pahamUtuh || 'Peserta didik memahami materi secara utuh dan siap mengikuti pengayaan/tutor sebaya KBC.'}
+                  <p className="text-slate-800 text-[11px] leading-relaxed text-justify">
+                    {kesiapanMurid?.pahamUtuh || 'Peserta didik memahami materi secara utuh dan siap mengikuti pengayaan serta menjadi teladan tutor sebaya dalam kelompok belajar.'}
                   </p>
                 </div>
 
                 <div className="bg-amber-50/70 border-l-4 border-amber-500 p-2.5 rounded-r">
                   <p className="font-bold text-amber-950 text-[11px] mb-0.5 flex items-center gap-1">
                     <span className="w-2 h-2 rounded-full bg-amber-500 inline-block"></span>
-                    Paham Sebagian (Kategori Berkembang):
+                    Kategori Berkembang (Paham Sebagian):
                   </p>
-                  <p className="text-slate-800 text-[11px] leading-relaxed">
-                    {kesiapanMurid?.pahamSebagian || 'Peserta didik memahami sebagian konsep dan memerlukan bimbingan terarah.'}
+                  <p className="text-slate-800 text-[11px] leading-relaxed text-justify">
+                    {kesiapanMurid?.pahamSebagian || 'Peserta didik memahami sebagian konsep dan memerlukan bimbingan terarah melalui contoh kontekstual serta penguatan berkala.'}
                   </p>
                 </div>
 
                 <div className="bg-rose-50/70 border-l-4 border-rose-500 p-2.5 rounded-r">
                   <p className="font-bold text-rose-950 text-[11px] mb-0.5 flex items-center gap-1">
                     <span className="w-2 h-2 rounded-full bg-rose-500 inline-block"></span>
-                    Belum Paham (Kategori Perlu Intervensi):
+                    Kategori Perlu Intervensi (Belum Paham):
                   </p>
-                  <p className="text-slate-800 text-[11px] leading-relaxed">
-                    {kesiapanMurid?.belumPaham || 'Peserta didik memerlukan bimbingan personal intensif dengan alat bantu visual/konkret.'}
+                  <p className="text-slate-800 text-[11px] leading-relaxed text-justify">
+                    {kesiapanMurid?.belumPaham || 'Peserta didik memerlukan bimbingan personal intensif dengan alat peraga visual/konkret dan pendekatan penuh kehangatan.'}
                   </p>
                 </div>
               </div>
             </div>
 
+            {/* Materi Pelajaran */}
             <div>
               <p className="font-bold text-slate-900 text-xs mb-1.5 border-b border-slate-200 pb-1 flex items-center justify-between">
-                <span>2. Seksi Materi Pelajaran (Uraian Runtut, Detail, & Komprehensif):</span>
+                <span>Uraian Materi Pelajaran (Deskripsi Naratif & Komprehensif):</span>
                 <span className="text-[10px] text-emerald-800 font-semibold bg-emerald-100 px-2 py-0.5 rounded border border-emerald-300">
-                  Sub-Bab Terstruktur KBC
+                  Uraian Berkesinambungan
                 </span>
               </p>
               {(() => {
@@ -643,25 +640,27 @@ export const DocumentPrintView: React.FC<DocumentPrintViewProps> = ({ modul, onC
                         let title = '';
                         let body = sec;
                         if (match && match[1] && match[2]) {
-                          title = match[1].trim();
+                          title = match[1].replace(/^[0-9]+[\.\)]\s*/, '').trim();
                           body = match[2].trim();
+                        } else {
+                          body = sec.replace(/^[0-9]+[\.\)]\s*/, '').trim();
                         }
                         return (
-                          <div key={idx} className="bg-emerald-50/60 border border-emerald-200/90 rounded-md p-2.5 text-[11px] text-slate-800 leading-relaxed shadow-2xs">
+                          <div key={idx} className="bg-emerald-50/50 border border-emerald-200/90 rounded-md p-2.5 text-[11px] text-slate-800 leading-relaxed shadow-2xs">
                             {title ? (
                               <div>
                                 <span className="font-extrabold text-emerald-950 text-xs block mb-1 border-b border-emerald-200/80 pb-0.5 flex items-center gap-1.5">
                                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
                                   <span>{title}</span>
                                 </span>
-                                <div className="text-slate-800 font-normal whitespace-pre-line leading-relaxed pl-1 pt-0.5">
+                                <p className="text-slate-800 font-normal leading-relaxed pl-1 pt-0.5 text-justify">
                                   {body}
-                                </div>
+                                </p>
                               </div>
                             ) : (
-                              <div className="whitespace-pre-line font-medium leading-relaxed">
-                                {sec}
-                              </div>
+                              <p className="font-normal leading-relaxed text-justify">
+                                {body}
+                              </p>
                             )}
                           </div>
                         );
@@ -670,23 +669,29 @@ export const DocumentPrintView: React.FC<DocumentPrintViewProps> = ({ modul, onC
                   );
                 }
 
+                const paragraphs = text.split(/\n\s*\n/).map(p => p.trim()).filter(Boolean);
                 return (
-                  <div className="text-slate-800 text-[11px] font-normal whitespace-pre-line leading-relaxed border-l-4 border-emerald-600 bg-emerald-50/40 p-3 rounded shadow-2xs my-1">
-                    {text}
+                  <div className="space-y-2 text-slate-800 text-[11px] font-normal leading-relaxed border-l-4 border-emerald-600 bg-emerald-50/40 p-3 rounded shadow-2xs my-1">
+                    {paragraphs.map((p, pIdx) => (
+                      <p key={pIdx} className="leading-relaxed text-justify">
+                        {p.replace(/^[0-9]+[\.\)]\s*/, '')}
+                      </p>
+                    ))}
                   </div>
                 );
               })()}
             </div>
 
+            {/* Dimensi Profil Lulusan */}
             <div>
               <p className="font-bold text-slate-900 text-xs mb-1.5 border-b border-slate-200 pb-1">
-                3. Dimensi Profil Lulusan (Profil Pelajar Pancasila & Rahmatan lil 'Alamin):
+                Dimensi Profil Lulusan (Profil Pelajar Pancasila & Rahmatan lil 'Alamin):
               </p>
               <div className="space-y-2 pl-1">
                 {Array.isArray(identifikasi?.dimensiProfilLulusan) && identifikasi.dimensiProfilLulusan.length > 0 ? (
                   identifikasi.dimensiProfilLulusan.map((d: string, i: number) => {
                     const parts = d.split(':');
-                    const title = parts[0]?.trim() || '';
+                    const title = parts[0]?.replace(/^[0-9]+[\.\)]\s*/, '').trim() || '';
                     const desc = parts.slice(1).join(':').trim();
                     return (
                       <div key={i} className="bg-emerald-50/80 border border-emerald-200/90 p-2.5 rounded-lg text-[11px] text-emerald-950 leading-relaxed space-y-1">
@@ -695,7 +700,7 @@ export const DocumentPrintView: React.FC<DocumentPrintViewProps> = ({ modul, onC
                           <span>{title}</span>
                         </div>
                         {desc ? (
-                          <p className="text-slate-800 text-[11px] font-normal leading-relaxed pl-3.5 border-l-2 border-emerald-300 ml-1 mt-0.5">
+                          <p className="text-slate-800 text-[11px] font-normal leading-relaxed pl-3.5 border-l-2 border-emerald-300 ml-1 mt-0.5 text-justify">
                             {desc}
                           </p>
                         ) : null}
@@ -708,15 +713,16 @@ export const DocumentPrintView: React.FC<DocumentPrintViewProps> = ({ modul, onC
               </div>
             </div>
 
+            {/* Topik Panca Cinta */}
             <div>
               <p className="font-bold text-slate-900 text-xs mb-1.5 border-b border-slate-200 pb-1">
-                4. Topik Panca Cinta (Pilar Kurikulum Berbasis Cinta - KBC):
+                Topik Panca Cinta (Pilar Kurikulum Berbasis Cinta - KBC):
               </p>
               <div className="space-y-2 pl-1">
                 {Array.isArray(identifikasi?.topikPancaCinta) && identifikasi.topikPancaCinta.length > 0 ? (
                   identifikasi.topikPancaCinta.map((tc: string, i: number) => {
                     const parts = tc.split(':');
-                    const title = parts[0]?.trim() || '';
+                    const title = parts[0]?.replace(/^[0-9]+[\.\)]\s*/, '').trim() || '';
                     const desc = parts.slice(1).join(':').trim();
                     return (
                       <div key={i} className="bg-rose-50/80 border border-rose-200/90 p-2.5 rounded-lg text-[11px] text-rose-950 leading-relaxed space-y-1">
@@ -725,7 +731,7 @@ export const DocumentPrintView: React.FC<DocumentPrintViewProps> = ({ modul, onC
                           <span>{title}</span>
                         </div>
                         {desc ? (
-                          <p className="text-slate-800 text-[11px] font-normal leading-relaxed pl-3.5 border-l-2 border-rose-300 ml-1 mt-0.5">
+                          <p className="text-slate-800 text-[11px] font-normal leading-relaxed pl-3.5 border-l-2 border-rose-300 ml-1 mt-0.5 text-justify">
                             {desc}
                           </p>
                         ) : null}
@@ -738,12 +744,13 @@ export const DocumentPrintView: React.FC<DocumentPrintViewProps> = ({ modul, onC
               </div>
             </div>
 
+            {/* Materi Integrasi KBC */}
             <div>
               <p className="font-bold text-slate-900 text-xs mb-1">
-                5. Materi Integrasi KBC (Kurikulum Berbasis Cinta):
+                Materi Integrasi KBC (Kurikulum Berbasis Cinta):
               </p>
-              <p className="text-slate-800 text-[11px] leading-relaxed bg-emerald-50/50 p-2.5 rounded border border-emerald-200/60 font-medium italic">
-                "{identifikasi?.materiIntegrasiKBC || 'Mengintegrasikan nilai-nilai KBC dalam materi.'}"
+              <p className="text-slate-800 text-[11px] leading-relaxed bg-emerald-50/50 p-2.5 rounded border border-emerald-200/60 font-medium italic text-justify">
+                "{identifikasi?.materiIntegrasiKBC || 'Penerapan Kurikulum Berbasis Cinta dilakukan secara komprehensif melalui pembiasaan tutur kata santun, sapaan kasih sayang, serta aksi nyata empati antarsiswa di madrasah.'}"
               </p>
             </div>
           </div>
@@ -757,33 +764,32 @@ export const DocumentPrintView: React.FC<DocumentPrintViewProps> = ({ modul, onC
           <div className="border border-slate-300 p-3.5 rounded-sm space-y-3 bg-white">
             <div>
               <p className="font-bold text-slate-900 text-xs border-b border-slate-200 pb-1 mb-1">
-                1. Capaian Pembelajaran (CP):
+                Capaian Pembelajaran (CP):
               </p>
-              <p className="text-slate-800 text-[11px] leading-relaxed pl-1">
+              <p className="text-slate-800 text-[11px] leading-relaxed pl-1 text-justify">
                 {desainPembelajaran?.capaianPembelajaran || '-'}
               </p>
             </div>
 
             <div>
               <p className="font-bold text-slate-900 text-xs border-b border-slate-200 pb-1 mb-1">
-                2. Lintas Disiplin Ilmu (Keterkaitan Antar Mata Pelajaran):
+                Lintas Disiplin Ilmu (Keterkaitan Antar Mata Pelajaran):
               </p>
-              <p className="text-slate-800 text-[11px] leading-relaxed pl-1">
+              <p className="text-slate-800 text-[11px] leading-relaxed pl-1 text-justify">
                 {desainPembelajaran?.lintasDisiplinIlmu || '-'}
               </p>
             </div>
 
             <div>
               <p className="font-bold text-slate-900 text-xs border-b border-slate-200 pb-1 mb-1.5">
-                3. Tujuan Pembelajaran (TP & ATP Berbasis Cinta):
+                Tujuan Pembelajaran (TP & Alur Tujuan Pembelajaran):
               </p>
-              <div className="space-y-1.5 pl-1">
+              <div className="space-y-2 pl-1">
                 {(Array.isArray(desainPembelajaran?.tujuanPembelajaran) ? desainPembelajaran.tujuanPembelajaran : []).map((tp: string, idx: number) => (
-                  <div key={idx} className="flex items-start gap-2 bg-slate-50 border border-slate-200 p-2 rounded text-[11px] text-slate-800 leading-relaxed">
-                    <span className="font-bold text-emerald-800 bg-emerald-100 px-1.5 py-0.5 rounded text-[10px]">
-                      TP {idx + 1}
-                    </span>
-                    <span className="flex-1">{tp}</span>
+                  <div key={idx} className="bg-emerald-50/40 border-l-3 border-emerald-600 p-2.5 rounded-r text-[11px] text-slate-800 leading-relaxed text-justify">
+                    <p className="leading-relaxed">
+                      {tp.replace(/^[0-9]+[\.\)]\s*/, '').replace(/^TP\s*[0-9]+:\s*/i, '')}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -800,19 +806,19 @@ export const DocumentPrintView: React.FC<DocumentPrintViewProps> = ({ modul, onC
             <tbody>
               <tr>
                 <td className="border border-slate-300 p-2 font-semibold bg-slate-50 w-1/3">Praktek Pedagogik</td>
-                <td className="border border-slate-300 p-2 text-[11px]">{kerangkaPembelajaran?.praktekPedagogik || '-'}</td>
+                <td className="border border-slate-300 p-2 text-[11px] leading-relaxed text-justify">{kerangkaPembelajaran?.praktekPedagogik || '-'}</td>
               </tr>
               <tr>
                 <td className="border border-slate-300 p-2 font-semibold bg-slate-50">Kemitraan Pembelajaran</td>
-                <td className="border border-slate-300 p-2 text-[11px]">{kerangkaPembelajaran?.kemitraanPembelajaran || '-'}</td>
+                <td className="border border-slate-300 p-2 text-[11px] leading-relaxed text-justify">{kerangkaPembelajaran?.kemitraanPembelajaran || '-'}</td>
               </tr>
               <tr>
                 <td className="border border-slate-300 p-2 font-semibold bg-slate-50">Lingkungan Pembelajaran</td>
-                <td className="border border-slate-300 p-2 text-[11px]">{kerangkaPembelajaran?.lingkunganPembelajaran || '-'}</td>
+                <td className="border border-slate-300 p-2 text-[11px] leading-relaxed text-justify">{kerangkaPembelajaran?.lingkunganPembelajaran || '-'}</td>
               </tr>
               <tr>
                 <td className="border border-slate-300 p-2 font-semibold bg-slate-50">Pemanfaatan Digital</td>
-                <td className="border border-slate-300 p-2 text-[11px]">{kerangkaPembelajaran?.pemanfaatanDigital || '-'}</td>
+                <td className="border border-slate-300 p-2 text-[11px] leading-relaxed text-justify">{kerangkaPembelajaran?.pemanfaatanDigital || '-'}</td>
               </tr>
             </tbody>
           </table>
@@ -821,82 +827,127 @@ export const DocumentPrintView: React.FC<DocumentPrintViewProps> = ({ modul, onC
         {/* SEKSI 5: PENGALAMAN BELAJAR */}
         <div className="space-y-2">
           <h3 className="font-bold text-xs uppercase bg-emerald-900 text-white px-3 py-1 rounded-sm">
-            V. SEKSI PENGALAMAN BELAJAR (LANGKAH-LANGKAH PEMBELAJARAN RUNTUT & DETAIL)
+            V. SEKSI PENGALAMAN BELAJAR (LANGKAH-LANGKAH PEMBELAJARAN BERBASIS CINTA)
           </h3>
           <div className="space-y-3">
+            {/* 1. Kegiatan Awal */}
             <div className="border border-slate-300 rounded-sm overflow-hidden bg-white">
               <div className="bg-emerald-900 text-white font-bold px-3 py-1.5 flex items-center justify-between text-[11px]">
-                <span>1. KEGIATAN AWAL (ORIENTASI PENUH CINTA & APERSEPSI)</span>
+                <span>KEGIATAN AWAL (ORIENTASI PENUH CINTA & APERSEPSI)</span>
                 <span className="bg-emerald-800 text-emerald-100 px-2 py-0.5 rounded text-[10px] font-mono">Durasi: {pengalamanBelajar?.kegiatanAwal?.durasi || '10 Menit'}</span>
               </div>
-              <ul className="divide-y divide-slate-100 p-2 text-[11px] text-slate-800 space-y-1">
-                {(Array.isArray(pengalamanBelajar?.kegiatanAwal?.kegiatan) ? pengalamanBelajar.kegiatanAwal.kegiatan : []).map((k: string, i: number) => (
-                  <li key={i} className="py-1.5 px-2 flex items-start gap-2 leading-relaxed">
-                    <span className="font-bold text-emerald-700 text-xs min-w-[18px]">1.{i + 1}</span>
-                    <span>{k}</span>
-                  </li>
-                ))}
-              </ul>
+              <div className="p-3 text-[11px] text-slate-800 space-y-2">
+                {(Array.isArray(pengalamanBelajar?.kegiatanAwal?.kegiatan) ? pengalamanBelajar.kegiatanAwal.kegiatan : []).map((k: string, i: number) => {
+                  const cleaned = k.replace(/^[0-9]+[\.\)]\s*/, '').replace(/^[0-9]+\.[0-9]+\s*/, '');
+                  const parts = cleaned.split(':');
+                  const hasPrefix = parts.length > 1 && parts[0].length < 60;
+                  const prefix = hasPrefix ? parts[0].trim() : '';
+                  const body = hasPrefix ? parts.slice(1).join(':').trim() : cleaned;
+
+                  return (
+                    <p key={i} className="leading-relaxed text-justify bg-emerald-50/25 p-2 rounded border-l-2 border-emerald-500">
+                      {prefix ? <strong className="font-bold text-emerald-950 block sm:inline mr-1">{prefix}:</strong> : null}
+                      <span className="text-slate-800">{body}</span>
+                    </p>
+                  );
+                })}
+              </div>
             </div>
 
+            {/* 2. Kegiatan Inti */}
             <div className="border border-slate-300 rounded-sm overflow-hidden bg-white">
               <div className="bg-emerald-900 text-white font-bold px-3 py-1.5 flex items-center justify-between text-[11px]">
-                <span>2. KEGIATAN INTI (EKSPLORASI, LITERASI & ELABORASI NILAI CINTA)</span>
+                <span>KEGIATAN INTI (EKSPLORASI, LITERASI & ELABORASI NILAI CINTA)</span>
                 <span className="bg-emerald-800 text-emerald-100 px-2 py-0.5 rounded text-[10px] font-mono">Durasi: {pengalamanBelajar?.kegiatanInti?.durasi || '50 Menit'}</span>
               </div>
-              <ul className="divide-y divide-slate-100 p-2 text-[11px] text-slate-800 space-y-1">
-                {(Array.isArray(pengalamanBelajar?.kegiatanInti?.kegiatan) ? pengalamanBelajar.kegiatanInti.kegiatan : []).map((k: string, i: number) => (
-                  <li key={i} className="py-1.5 px-2 flex items-start gap-2 leading-relaxed">
-                    <span className="font-bold text-emerald-700 text-xs min-w-[18px]">2.{i + 1}</span>
-                    <span>{k}</span>
-                  </li>
-                ))}
-              </ul>
+              <div className="p-3 text-[11px] text-slate-800 space-y-2">
+                {(Array.isArray(pengalamanBelajar?.kegiatanInti?.kegiatan) ? pengalamanBelajar.kegiatanInti.kegiatan : []).map((k: string, i: number) => {
+                  const cleaned = k.replace(/^[0-9]+[\.\)]\s*/, '').replace(/^[0-9]+\.[0-9]+\s*/, '');
+                  const parts = cleaned.split(':');
+                  const hasPrefix = parts.length > 1 && parts[0].length < 60;
+                  const prefix = hasPrefix ? parts[0].trim() : '';
+                  const body = hasPrefix ? parts.slice(1).join(':').trim() : cleaned;
+
+                  return (
+                    <p key={i} className="leading-relaxed text-justify bg-emerald-50/25 p-2 rounded border-l-2 border-emerald-500">
+                      {prefix ? <strong className="font-bold text-emerald-950 block sm:inline mr-1">{prefix}:</strong> : null}
+                      <span className="text-slate-800">{body}</span>
+                    </p>
+                  );
+                })}
+              </div>
             </div>
 
+            {/* 3. Mengaplikasi */}
             <div className="border border-slate-300 rounded-sm overflow-hidden bg-white">
               <div className="bg-emerald-900 text-white font-bold px-3 py-1.5 flex items-center justify-between text-[11px]">
-                <span>3. MENGAPLIKASI (PRAKTIK NYATA AKSI KASIH SAYANG & PEMBIASAAN)</span>
+                <span>MENGAPLIKASI (PRAKTIK NYATA AKSI KASIH SAYANG & PEMBIASAAN)</span>
                 <span className="bg-emerald-800 text-emerald-100 px-2 py-0.5 rounded text-[10px] font-mono">Durasi: {pengalamanBelajar?.mengaplikasi?.durasi || '15 Menit'}</span>
               </div>
-              <ul className="divide-y divide-slate-100 p-2 text-[11px] text-slate-800 space-y-1">
-                {(Array.isArray(pengalamanBelajar?.mengaplikasi?.kegiatan) ? pengalamanBelajar.mengaplikasi.kegiatan : []).map((k: string, i: number) => (
-                  <li key={i} className="py-1.5 px-2 flex items-start gap-2 leading-relaxed">
-                    <span className="font-bold text-emerald-700 text-xs min-w-[18px]">3.{i + 1}</span>
-                    <span>{k}</span>
-                  </li>
-                ))}
-              </ul>
+              <div className="p-3 text-[11px] text-slate-800 space-y-2">
+                {(Array.isArray(pengalamanBelajar?.mengaplikasi?.kegiatan) ? pengalamanBelajar.mengaplikasi.kegiatan : []).map((k: string, i: number) => {
+                  const cleaned = k.replace(/^[0-9]+[\.\)]\s*/, '').replace(/^[0-9]+\.[0-9]+\s*/, '');
+                  const parts = cleaned.split(':');
+                  const hasPrefix = parts.length > 1 && parts[0].length < 60;
+                  const prefix = hasPrefix ? parts[0].trim() : '';
+                  const body = hasPrefix ? parts.slice(1).join(':').trim() : cleaned;
+
+                  return (
+                    <p key={i} className="leading-relaxed text-justify bg-emerald-50/25 p-2 rounded border-l-2 border-emerald-500">
+                      {prefix ? <strong className="font-bold text-emerald-950 block sm:inline mr-1">{prefix}:</strong> : null}
+                      <span className="text-slate-800">{body}</span>
+                    </p>
+                  );
+                })}
+              </div>
             </div>
 
+            {/* 4. Merefleksi */}
             <div className="border border-slate-300 rounded-sm overflow-hidden bg-white">
               <div className="bg-emerald-900 text-white font-bold px-3 py-1.5 flex items-center justify-between text-[11px]">
-                <span>4. MEREFLEKSI (REFLEKSI HATI, KONTEMPLASI & RASA SYUKUR)</span>
+                <span>MEREFLEKSI (REFLEKSI HATI, KONTEMPLASI & RASA SYUKUR)</span>
                 <span className="bg-emerald-800 text-emerald-100 px-2 py-0.5 rounded text-[10px] font-mono">Durasi: {pengalamanBelajar?.merefleksi?.durasi || '10 Menit'}</span>
               </div>
-              <ul className="divide-y divide-slate-100 p-2 text-[11px] text-slate-800 space-y-1">
-                {(Array.isArray(pengalamanBelajar?.merefleksi?.kegiatan) ? pengalamanBelajar.merefleksi.kegiatan : []).map((k: string, i: number) => (
-                  <li key={i} className="py-1.5 px-2 flex items-start gap-2 leading-relaxed">
-                    <span className="font-bold text-emerald-700 text-xs min-w-[18px]">4.{i + 1}</span>
-                    <span>{k}</span>
-                  </li>
-                ))}
-              </ul>
+              <div className="p-3 text-[11px] text-slate-800 space-y-2">
+                {(Array.isArray(pengalamanBelajar?.merefleksi?.kegiatan) ? pengalamanBelajar.merefleksi.kegiatan : []).map((k: string, i: number) => {
+                  const cleaned = k.replace(/^[0-9]+[\.\)]\s*/, '').replace(/^[0-9]+\.[0-9]+\s*/, '');
+                  const parts = cleaned.split(':');
+                  const hasPrefix = parts.length > 1 && parts[0].length < 60;
+                  const prefix = hasPrefix ? parts[0].trim() : '';
+                  const body = hasPrefix ? parts.slice(1).join(':').trim() : cleaned;
+
+                  return (
+                    <p key={i} className="leading-relaxed text-justify bg-emerald-50/25 p-2 rounded border-l-2 border-emerald-500">
+                      {prefix ? <strong className="font-bold text-emerald-950 block sm:inline mr-1">{prefix}:</strong> : null}
+                      <span className="text-slate-800">{body}</span>
+                    </p>
+                  );
+                })}
+              </div>
             </div>
 
+            {/* 5. Penutup */}
             <div className="border border-slate-300 rounded-sm overflow-hidden bg-white">
               <div className="bg-emerald-900 text-white font-bold px-3 py-1.5 flex items-center justify-between text-[11px]">
-                <span>5. PENUTUP (RANGKUMAN, APRESIASI & SALAM KASIH)</span>
+                <span>PENUTUP (RANGKUMAN, APRESIASI & SALAM KASIH)</span>
                 <span className="bg-emerald-800 text-emerald-100 px-2 py-0.5 rounded text-[10px] font-mono">Durasi: {pengalamanBelajar?.penutup?.durasi || '5 Menit'}</span>
               </div>
-              <ul className="divide-y divide-slate-100 p-2 text-[11px] text-slate-800 space-y-1">
-                {(Array.isArray(pengalamanBelajar?.penutup?.kegiatan) ? pengalamanBelajar.penutup.kegiatan : []).map((k: string, i: number) => (
-                  <li key={i} className="py-1.5 px-2 flex items-start gap-2 leading-relaxed">
-                    <span className="font-bold text-emerald-700 text-xs min-w-[18px]">5.{i + 1}</span>
-                    <span>{k}</span>
-                  </li>
-                ))}
-              </ul>
+              <div className="p-3 text-[11px] text-slate-800 space-y-2">
+                {(Array.isArray(pengalamanBelajar?.penutup?.kegiatan) ? pengalamanBelajar.penutup.kegiatan : []).map((k: string, i: number) => {
+                  const cleaned = k.replace(/^[0-9]+[\.\)]\s*/, '').replace(/^[0-9]+\.[0-9]+\s*/, '');
+                  const parts = cleaned.split(':');
+                  const hasPrefix = parts.length > 1 && parts[0].length < 60;
+                  const prefix = hasPrefix ? parts[0].trim() : '';
+                  const body = hasPrefix ? parts.slice(1).join(':').trim() : cleaned;
+
+                  return (
+                    <p key={i} className="leading-relaxed text-justify bg-emerald-50/25 p-2 rounded border-l-2 border-emerald-500">
+                      {prefix ? <strong className="font-bold text-emerald-950 block sm:inline mr-1">{prefix}:</strong> : null}
+                      <span className="text-slate-800">{body}</span>
+                    </p>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>
@@ -906,39 +957,57 @@ export const DocumentPrintView: React.FC<DocumentPrintViewProps> = ({ modul, onC
           <h3 className="font-bold text-xs uppercase bg-emerald-900 text-white px-3 py-1 rounded-sm">
             VI. SEKSI ASESMEN & LEMBAR KERJA PESERTA DIDIK (LKPD)
           </h3>
-          <div className="border border-slate-300 p-3 rounded-sm space-y-3">
-            <div>
-              <p className="font-bold text-slate-800">Teknik & Rubrik Asesmen:</p>
-              <p className="text-slate-700 text-[11px]"><span className="font-semibold">Teknik:</span> {assesmen?.teknikAssesmen || '-'}</p>
-              <p className="text-slate-700 text-[11px]"><span className="font-semibold">Rubrik Sikap Cinta:</span> {assesmen?.rubrikAssesmenSikapCinta || '-'}</p>
-              <p className="text-slate-700 text-[11px]"><span className="font-semibold">Instrumen:</span> {assesmen?.instrumenPenilaian || '-'}</p>
+          <div className="border border-slate-300 p-3 rounded-sm space-y-3 bg-white">
+            <div className="space-y-1.5">
+              <p className="font-bold text-slate-800 border-b border-slate-200 pb-1">Teknik & Rubrik Asesmen:</p>
+              <p className="text-slate-800 text-[11px] leading-relaxed text-justify">
+                <span className="font-bold text-emerald-900">Teknik Penilaian:</span> {assesmen?.teknikAssesmen || 'Asesmen Diagnostik (Awal), Asesmen Formatif (Observasi Sikap Cinta & Performa Diskusi), serta Asesmen Sumatif (Kuis Interaktif & LKPD Mandiri).'}
+              </p>
+              <p className="text-slate-800 text-[11px] leading-relaxed text-justify">
+                <span className="font-bold text-emerald-900">Rubrik Sikap Kasih Sayang:</span> {assesmen?.rubrikAssesmenSikapCinta || 'Rubrik Sikap Kasih Sayang (Skor 1-4): Berkata Lembut dan Santun, Empati Membantu Teman, Menjaga Kebersihan Kelas, serta Menghargai Perbedaan.'}
+              </p>
+              <p className="text-slate-800 text-[11px] leading-relaxed text-justify">
+                <span className="font-bold text-emerald-900">Instrumen Penilaian:</span> {assesmen?.instrumenPenilaian || 'Lembar Observasi Perilaku Berbasis Cinta, Format Penilaian LKPD, dan Catatan Anekdot Perkembangan Karakter Murid.'}
+              </p>
             </div>
 
             {/* LKPD Box */}
-            <div className="bg-slate-50 border border-slate-300 p-3 rounded space-y-2">
+            <div className="bg-slate-50 border border-slate-300 p-3 rounded space-y-2.5">
               <h4 className="font-bold text-xs text-emerald-900 uppercase border-b border-slate-300 pb-1">
                 {lkpd?.judulLkpd || 'Lembar Kerja Peserta Didik'}
               </h4>
-              <p className="text-[11px] text-slate-700 font-medium">Petunjuk: {lkpd?.petunjuk || '-'}</p>
+              <p className="text-[11px] text-slate-800 leading-relaxed font-medium bg-emerald-50/60 p-2 rounded border border-emerald-200/80">
+                <span className="font-bold text-emerald-950">Petunjuk Pengerjaan:</span> {lkpd?.petunjuk || 'Bacalah setiap petunjuk dengan teliti dan penuh senyuman. Kerjakan dengan jujur dan semangat kebaikan!'}
+              </p>
+
               <div>
-                <p className="font-semibold text-slate-800 text-[11px]">Tugas & Aktivitas Murid:</p>
-                <ol className="list-decimal list-inside text-[11px] text-slate-700 space-y-0.5 pl-1">
-                  {(Array.isArray(lkpd?.tugasAktivitas) ? lkpd.tugasAktivitas : []).map((ta: string, i: number) => (
-                    <li key={i}>{ta}</li>
-                  ))}
-                </ol>
+                <p className="font-bold text-slate-800 text-[11px] mb-1">Tugas & Aktivitas Murid:</p>
+                <div className="space-y-1.5 pl-0.5">
+                  {(Array.isArray(lkpd?.tugasAktivitas) ? lkpd.tugasAktivitas : []).map((ta: string, i: number) => {
+                    const cleaned = ta.replace(/^[0-9]+[\.\)]\s*/, '').replace(/^Aktivitas\s*[0-9]+:\s*/i, '');
+                    return (
+                      <div key={i} className="bg-white p-2 rounded border border-slate-200 text-[11px] text-slate-800 leading-relaxed text-justify">
+                        <p className="leading-relaxed">{cleaned || ta}</p>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
+
               <div>
-                <p className="font-semibold text-slate-800 text-[11px]">Pertanyaan Diskusi:</p>
-                <ul className="list-disc list-inside text-[11px] text-slate-700 space-y-0.5 pl-1">
+                <p className="font-bold text-slate-800 text-[11px] mb-1">Pertanyaan Diskusi:</p>
+                <div className="space-y-1.5 pl-0.5">
                   {(Array.isArray(lkpd?.pertanyaanDiskusi) ? lkpd.pertanyaanDiskusi : []).map((pd: string, i: number) => (
-                    <li key={i}>{pd}</li>
+                    <div key={i} className="bg-white p-2 rounded border border-slate-200 text-[11px] text-slate-800 leading-relaxed text-justify">
+                      <p className="leading-relaxed">{pd.replace(/^[0-9]+[\.\)]\s*/, '')}</p>
+                    </div>
                   ))}
-                </ul>
+                </div>
               </div>
+
               <div>
-                <p className="font-semibold text-slate-800 text-[11px]">Lembar Refleksi Siswa:</p>
-                <p className="text-[11px] text-slate-700 italic border-l-2 border-emerald-600 pl-2 bg-white py-1">
+                <p className="font-bold text-slate-800 text-[11px] mb-1">Lembar Refleksi Siswa:</p>
+                <p className="text-[11px] text-slate-800 italic border-l-3 border-emerald-600 pl-2.5 bg-white py-1.5 rounded-r text-justify leading-relaxed">
                   "{lkpd?.lembarRefleksiSiswa || '-'}"
                 </p>
               </div>

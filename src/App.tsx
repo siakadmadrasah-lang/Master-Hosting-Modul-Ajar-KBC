@@ -61,6 +61,7 @@ import { OfficialRegisterModal } from './components/OfficialRegisterModal';
 import { CurriculumLiteracyModal } from './components/CurriculumLiteracyModal';
 import { WelcomeBanner } from './components/WelcomeBanner';
 import { QuizResultsRecapModal } from './components/QuizResultsRecapModal';
+import { AnimatedToast } from './components/AnimatedToast';
 
 import {
   Sparkles,
@@ -844,13 +845,12 @@ export default function App() {
   return (
     <AndroidFrame>
       <div className="w-full flex-1 min-h-0 flex flex-col overflow-hidden bg-slate-950 text-slate-100 relative">
-        {/* Toast Notification */}
-        {toastMsg && (
-          <div className="fixed top-4 left-1/2 -translate-x-1/2 z-50 bg-slate-900 text-white border border-emerald-500 px-4 py-2.5 rounded-2xl shadow-2xl flex items-center space-x-2.5 text-xs font-bold animate-bounce">
-            <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-            <span>{toastMsg}</span>
-          </div>
-        )}
+        {/* Animated Toast Notification */}
+        <AnimatedToast
+          message={toastMsg || null}
+          onClose={() => setToastMsg('')}
+          duration={3500}
+        />
 
         {/* Top App Header Bar */}
         <HeaderBar

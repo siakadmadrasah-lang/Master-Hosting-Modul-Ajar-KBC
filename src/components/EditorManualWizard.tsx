@@ -49,6 +49,7 @@ import {
   RefreshCw
 } from 'lucide-react';
 import { MateriBankManager } from './MateriBankManager';
+import { AnimatedToast } from './AnimatedToast';
 
 interface EditorManualWizardProps {
   initialModul?: ModulAjarCinta | null;
@@ -73,6 +74,7 @@ export const EditorManualWizard: React.FC<EditorManualWizardProps> = ({
   const [showMateriPicker, setShowMateriPicker] = useState<boolean>(false);
   const [isSaving, setIsSaving] = useState<boolean>(false);
   const [isSaved, setIsSaved] = useState<boolean>(false);
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   // Form State
   const [judul, setJudul] = useState<string>(
@@ -356,13 +358,19 @@ export const EditorManualWizard: React.FC<EditorManualWizardProps> = ({
     onSave(finalModul);
     setIsSaving(false);
     setIsSaved(true);
+    setToastMessage('Modul Ajar KBC Berhasil Disimpan!');
     setTimeout(() => {
       setIsSaved(false);
-    }, 2000);
+    }, 2500);
   };
 
   return (
     <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-md z-[80] overflow-y-auto flex items-center justify-center p-3 sm:p-4">
+      <AnimatedToast
+        message={toastMessage}
+        onClose={() => setToastMessage(null)}
+        duration={3500}
+      />
       <div className="w-full max-w-3xl bg-white border border-slate-200 rounded-3xl shadow-2xl overflow-hidden flex flex-col h-[90vh] text-slate-800 text-xs">
         {/* Header */}
         <div className="bg-gradient-to-r from-emerald-600 via-teal-700 to-emerald-800 p-4 text-white flex items-center justify-between shrink-0 shadow-xs">
