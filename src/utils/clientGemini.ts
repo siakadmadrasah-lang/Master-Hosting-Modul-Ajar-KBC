@@ -89,17 +89,15 @@ export async function clientGenerateModul(body: any, apiKey: string) {
     throw new Error('API Key Gemini belum dikonfigurasi. Masukkan API Key di menu Pengaturan.');
   }
 
-  const {
-    namaMadrasah = "MI Ma'arif NU 2 Sanggreman",
-    mataPelajaran = 'Akidah Akhlak',
-    materi = 'Meneladani Sifat Ar-Rahman dalam Kasih Sayang',
-    faseKelas = 'Fase B (Kelas III MI)',
-    semester = 'Ganjil (1)',
-    tahunPelajaran = '2025/2026',
-    alokasiWaktu = '2 x 35 Menit (2 JP)',
-    topikPancaCinta = [],
-    instruksiKhusus = ''
-  } = body || {};
+  const namaMadrasah = body?.namaMadrasah || "MI Ma'arif NU 2 Sanggreman";
+  const mataPelajaran = body?.mataPelajaran || body?.mapel || 'Pendidikan Pancasila';
+  const materi = body?.materi || body?.judulMateri || body?.topik || 'Materi Pembelajaran';
+  const faseKelas = body?.faseKelas || body?.kelas || body?.fase || 'Fase B (Kelas IV MI)';
+  const semester = body?.semester || 'Ganjil (1)';
+  const tahunPelajaran = body?.tahunPelajaran || body?.tahunAjaran || '2026/2027';
+  const alokasiWaktu = body?.alokasiWaktu || '2 x 35 Menit (2 JP)';
+  const topikPancaCinta = body?.topikPancaCinta || body?.pancaCinta || [];
+  const instruksiKhusus = body?.instruksiKhusus || '';
 
   const ai = new GoogleGenAI({ apiKey: apiKey.trim() });
 
@@ -118,7 +116,7 @@ Buatkan Modul Ajar Berbasis Cinta (KBC) yang SANGAT LENGKAP, DETAIL, RUNTUT, DAN
 
 Modul Ajar KBC harus mencakup 7 Seksi Utama dengan deskripsi komprehensif:
 1. Seksi Identitas Modul
-2. Seksi Identifikasi (Kesiapan murid, Materi Pelajaran diuraikan sangat lengkap & detail memuat 6 poin sub-bab utama: 1. Pengertian/Konsep, 2. Landasan/Dalil, 3. Ketentuan/Rukun, 4. Tata Cara/Adab, 5. Integrasi Panca Cinta, 6. Penerapan Praktis tanpa markdown asteriks, Profil Lulusan, Topik Panca Cinta, Materi Integrasi KBC).
+2. Seksi Identifikasi (Kesiapan murid, Materi Pelajaran diuraikan sangat lengkap & detail memuat 6 poin sub-bab utama yang adaptif dengan karakteristik mata pelajaran "${mataPelajaran}": Poin 1. Pengertian/Konsep Pokok, Poin 2. Landasan Keilmuan/Konstitusi/Dalil Terkait, Poin 3. Karakteristik/Komponen Pokok/Nilai Kunci, Poin 4. Tata Cara/Prosedur/Langkah & Adab, Poin 5. Integrasi Panca Cinta, Poin 6. Penerapan Praktis tanpa markdown asteriks, Profil Lulusan, Topik Panca Cinta, Materi Integrasi KBC).
 3. Seksi Desain Pembelajaran (CP, Lintas Disiplin Ilmu, TP & ATP).
 4. Seksi Kerangka Pembelajaran (Praktek Pedagogik, Kemitraan Pembelajaran, Lingkungan Pembelajaran, Pemanfaatan Digital).
 5. Seksi Pengalaman Belajar (WAJIB DIBUAT SANGAT DETIL, LENGKAP, TERSTRUKTUR, BERTAHAP, DAN KOMPREHENSIF MEMUAT URAIAN KONKRET INTERAKSI GURU DAN SISWA DENGAN DURASI & PERINCIAN MENDALAM):
@@ -352,54 +350,103 @@ Sajikan dalam JSON rapi tanpa tambahan teks pembuka/penutup markdown.`;
 
 export async function clientGenerateMateriUraian(body: any, apiKey: string) {
   if (!apiKey || apiKey.trim().length === 0) {
-    throw new Error('API Key Gemini belum diisi.');
+    throw new Error('API Key Gemini belum diisi. Masukkan API Key di menu Pengaturan.');
   }
 
-  const { mapel = '', kelas = '', topik = '', pancaCinta = [] } = body || {};
+  const mataPelajaran = body?.mataPelajaran || body?.mapel || 'Pendidikan Pancasila';
+  const faseKelas = body?.faseKelas || body?.kelas || 'Fase B (Kelas IV MI)';
+  const judulMateri = body?.judulMateri || body?.topik || body?.materi || '';
+  const topikPancaCinta = body?.topikPancaCinta || body?.pancaCinta || [];
+
+  if (!judulMateri || judulMateri.trim().length === 0) {
+    throw new Error('Judul / Pokok Bahasan Materi wajib diisi terlebih dahulu.');
+  }
 
   const ai = new GoogleGenAI({ apiKey: apiKey.trim() });
-  const promptText = `Anda adalah Pakar Penyusun Bahan Ajar Kurikulum Berbasis Cinta (KBC) Madrasah Ibtidaiyah (MI).
-Buatkan URAIAN MATERI PELAJARAN LENGKAP, TERSTRUKTUR, SANGAT DETAIL DAN MUDAH DIPAHAMI MURID MI untuk:
-- Mata Pelajaran: ${mapel}
-- Kelas: ${kelas}
-- Topik / Judul Materi: ${topik}
-- Integrasi Panca Cinta: ${Array.isArray(pancaCinta) && pancaCinta.length > 0 ? pancaCinta.join(', ') : 'Disesuaikan dengan nuansa kasih sayang'}
+  const promptText = `Anda adalah pakar ahli kurikulum Madrasah Ibtidaiyah (MI) dan Sekolah Dasar Kementerian Agama RI serta Kurikulum Berbasis Cinta (KBC).
+Buatkan URAIAN MATERI PELAJARAN yang SANGAT RUNTUT, LENGKAP, TERSTRUKTUR, SANGAT DETAIL, DAN KOMPREHENSIF untuk:
+- Mata Pelajaran: ${mataPelajaran}
+- Fase / Kelas Target: ${faseKelas}
+- Judul / Pokok Bahasan Utama: ${judulMateri}
+- Fokus Integrasi Panca Cinta: ${Array.isArray(topikPancaCinta) && topikPancaCinta.length > 0 ? topikPancaCinta.join(', ') : 'Disesuaikan dengan konteks kasih sayang, persatuan, kebangsaan, & akhlak terpuji'}
 
-ATURAN PENULISAN:
-1. Uraikan secara sistematis dan komprehensif menjadi poin-poin utama penomoran 1, 2, 3, dst.
-2. JANGAN gunakan tanda asteriks markdown ** atau * untuk cetak tebal/miring. Gunakan teks biasa yang bersih.
-3. Sertakan contoh konkret kehidupan harian murid MI, hikmah kebaikan KBC, dan ajakan penerapan cinta kasih sesama manusia dan alam.
-4. Buat minimal 4-6 sub-poin pembahasan yang mendalam.`;
+Petunjuk Struktur Wajib (Gunakan teks biasa TANPA simbol markdown asteriks ** atau *):
+1. Gunakan penomoran poin 1 sampai 6 dengan judul sub-materi jelas dan uraian penjelasan rinci. Jangan gunakan simbol ** atau * untuk cetak tebal.
+2. Wajib mencakup 6 sub-bahasan utama yang DISESUAIKAN DENGAN KARAKTERISTIK MATA PELAJARAN "${mataPelajaran}":
+   - Poin 1: Pengertian, Makna Filosofis / Etimologi, & Konsep Utama (Penjelasan rinci konsep dasar, batasan materi, dan pemahaman awal yang utuh mengenai materi ${judulMateri}).
+   - Poin 2: Landasan Keilmuan / Konstitusi / Syariat & Dalil Terkait (Untuk Pendidikan Pancasila/PKn: Sila Pancasila, UUD 1945, & Bhinneka Tunggal Ika; Untuk Mapel Agama: Ayat Al-Qur'an/Hadis; Untuk Sains/IPAS/Matematika: Fakta ilmiah/hukum alam & tadabbur ciptaan Tuhan; Untuk Bahasa: Kaidah kebahasaan baku & etika tutur santun).
+   - Poin 3: Karakteristik, Komponen Pokok, & Nilai Kunci (Sesuaikan konteks mapel: Untuk Pancasila -> Nilai Luhur, Hak & Kewajiban, Prinsip Kebangsaan; Untuk Sains/IPAS -> Ciri Khusus, Struktur, Komponen; Untuk Bahasa -> Ciri Kebahasaan, Unsur Teks; Untuk Matematika -> Sifat Rumus & Pola; Untuk Agama/Fikih -> Ketentuan, Syarat, & Rukun).
+   - Poin 4: Tata Cara, Prosedur / Langkah Kerja, & Adab Pembiasaan (Tahapan runtut dalam praktik, bermusyawarah, menyelesaikan masalah, atau ibadah beserta adab mulia).
+   - Poin 5: Integrasi Nilai Panca Cinta KBC & Hikmah (Kaitan materi dengan Panca Cinta KBC, cinta tanah air, kasih sayang sesama, cinta alam, dan kedamaian hati).
+   - Poin 6: Penerapan Praktis & Pembiasaan Hidup Nyata Sehari-hari (Contoh-contoh konkret aksi nyata dan pembiasaan positif di sekolah/madrasah, rumah, dan masyarakat).
+3. Bahasa disesuaikan dengan tingkat perkembangan emosional & kognitif murid ${faseKelas}, namun tetap kaya materi akademik & spiritual/moral.
+
+Kembalikan respon JSON persis dengan format berikut (tanpa simbol **):
+{
+  "uraianMateri": "1. Pengertian, Makna, & Konsep Utama: ...\\n\\n2. Landasan Keilmuan / Konstitusi / Dalil: ...\\n\\n3. Karakteristik / Komponen Pokok: ...\\n\\n4. Tata Cara / Prosedur & Adab: ...\\n\\n5. Integrasi Panca Cinta & Hikmah: ...\\n\\n6. Penerapan Praktis Sehari-hari: ...",
+  "capaianPembelajaranDefault": "Peserta didik mampu memahami..."
+}`;
 
   const response = await generateContentWithRetry(ai, {
-    contents: promptText
+    contents: promptText,
+    config: {
+      responseMimeType: 'application/json',
+      responseSchema: {
+        type: Type.OBJECT,
+        properties: {
+          uraianMateri: { type: Type.STRING },
+          capaianPembelajaranDefault: { type: Type.STRING }
+        },
+        required: ['uraianMateri']
+      }
+    }
   });
+
+  if (!response.text) {
+    throw new Error('Tidak ada respon dari Gemini AI.');
+  }
+
+  let cleanedUraian = '';
+  let cleanedCp = '';
+
+  try {
+    const parsed = JSON.parse(response.text);
+    cleanedUraian = (parsed.uraianMateri || '').replace(/\*\*/g, '').replace(/__/g, '');
+    cleanedCp = (parsed.capaianPembelajaranDefault || '').replace(/\*\*/g, '').replace(/__/g, '');
+  } catch (e) {
+    cleanedUraian = response.text.replace(/```json/g, '').replace(/```/g, '').trim().replace(/\*\*/g, '').replace(/__/g, '');
+  }
 
   return {
     success: true,
-    uraianMateri: response.text || 'Gagal menghasilkan materi.'
+    uraianMateri: cleanedUraian,
+    capaianPembelajaranDefault: cleanedCp
   };
 }
 
 export async function clientGenerateQuizMedia(body: any, apiKey: string) {
   if (!apiKey || apiKey.trim().length === 0) {
-    throw new Error('API Key Gemini belum diisi.');
+    throw new Error('API Key Gemini belum diisi. Masukkan API Key di menu Pengaturan.');
   }
 
-  const { mapel = '', kelas = '', materi = '', pancaCinta = [], targetJumlahSoal = 25 } = body || {};
+  const mataPelajaran = body?.mataPelajaran || body?.mapel || 'Pendidikan Pancasila';
+  const faseKelas = body?.faseKelas || body?.kelas || 'Fase B (Kelas IV MI)';
+  const materi = body?.materi || body?.judulMateri || body?.topik || 'Materi Pembelajaran';
+  const topikPancaCinta = body?.topikPancaCinta || body?.pancaCinta || [];
+  const targetJumlahSoal = body?.jumlahSoal || body?.targetJumlahSoal || 25;
 
   const ai = new GoogleGenAI({ apiKey: apiKey.trim() });
   const promptText = `Anda adalah Pakar Pengembang Kuis & Media Pembelajaran Berbasis Cinta (KBC) Madrasah Ibtidaiyah.
 Buatkan Paket Media Digital Lengkap dan Kuis Interaktif SANGAT DETAIL khusus untuk:
-- Mata Pelajaran: ${mapel}
-- Kelas/Fase: ${kelas}
+- Mata Pelajaran: ${mataPelajaran}
+- Kelas/Fase: ${faseKelas}
 - Materi Pembelajaran: ${materi}
-- Integrasi Panca Cinta: ${Array.isArray(pancaCinta) && pancaCinta.length > 0 ? pancaCinta.join(', ') : 'Disesuaikan'}
+- Integrasi Panca Cinta: ${Array.isArray(topikPancaCinta) && topikPancaCinta.length > 0 ? topikPancaCinta.join(', ') : 'Disesuaikan'}
 - WAJIB Jumlah Soal Kuis Pilihan Ganda: TEPAT ${targetJumlahSoal} NOMOR SOAL.
 
 Ketentuan Soal Kuis:
 1. Buat TEPAT ${targetJumlahSoal} nomor soal pilihan ganda (A, B, C, D) yang bervariasi dari tingkat pemahaman hingga penalaran sederhana.
-2. Setiap soal wajib memiliki penjelasan bernuansa KBC (kasih sayang, keteladanan, akhlak mulia).
+2. Setiap soal wajib memiliki penjelasan bernuansa KBC (kasih sayang, keteladanan, akhlak mulia, cinta tanah air).
 3. Kunci jawaban berupa index angka: 0 untuk A, 1 untuk B, 2 untuk C, 3 untuk D.
 
 Sajikan dalam JSON rapi tanpa tambahan teks pembuka/penutup markdown.`;

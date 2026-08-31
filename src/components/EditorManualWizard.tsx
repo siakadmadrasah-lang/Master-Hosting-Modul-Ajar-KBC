@@ -18,6 +18,7 @@ import {
   getDefaultPancaCintaDesc,
   getRecommendedPancasilaAndPancaCinta
 } from '../utils/pancasilaPancaCinta';
+import { getTemplate6SubBab } from '../utils/templateHelper';
 import {
   compressAndResizeImage,
   getEducationalSvgIllustration,
@@ -691,7 +692,7 @@ export const EditorManualWizard: React.FC<EditorManualWizardProps> = ({
                     <button
                       type="button"
                       onClick={() => {
-                        const template6Poin = `1. Pengertian, Etimologi, & Konsep Utama: Uraikan definisi mendalam, batasan konsep, dan etimologi istilah dari materi ${identitas.materi || 'pelajaran'}.\n\n2. Landasan Syariat & Dalil Al-Qur'an / Hadis / Keilmuan Relevan: Tuliskan lafaz Latin/terjemahan ayat/hadis atau landasan teori yang relevan.\n\n3. Ketentuan, Syarat, Rukun, & Komponen Pokok: Jelaskan kriteria teknis, syarat sah/wajib, rukun, atau elemen penting yang wajib dikuasai murid.\n\n4. Tata Cara, Urutan Langkah, & Adab Pembiasaan: Jabarkan tahapan pelaksanaan secara runtut dari awal hingga akhir beserta adab-adab terpuji.\n\n5. Integrasi Nilai Panca Cinta KBC & Hikmah: Hubungkan materi dengan pilar Panca Cinta KBC, kehangatan empati, serta hikmah emosional/sosial.\n\n6. Penerapan Praktis & Pembiasaan Akhlak Sehari-hari: Berikan contoh-contoh tindakan nyata murid di madrasah, rumah, dan lingkungan masyarakat.`;
+                        const template6Poin = getTemplate6SubBab(identitas.mataPelajaran, identitas.materi);
                         setIdentifikasi({ ...identifikasi, materiPelajaran: template6Poin });
                       }}
                       className="px-2.5 py-1 text-[11px] font-bold bg-emerald-100 hover:bg-emerald-200 text-emerald-800 border border-emerald-300 rounded-lg transition-all flex items-center gap-1 shadow-xs"

@@ -891,13 +891,13 @@ PETUNJUK PENYUSUNAN SANGAT DETAIL DENGAN DESKRIPSI URAIAN LENGKAP:
      * pahamUtuh: Uraikan secara sangat mendalam & rinci mengenai karakteristik pemahaman murid kategori tinggi/mahir, indikator spesifik penguasaan materi, serta bentuk intervensi diferensiasi berupa tantangan pengayaan dan peran sebagai tutor sebaya KBC.
      * pahamSebagian: Uraikan secara sangat mendalam & rinci mengenai materi/konsep yang sudah dipahami dan bagian mana yang masih membingungkan, serta bentuk pendampingan terarah yang diberikan guru.
      * belumPaham: Uraikan secara sangat mendalam & rinci mengenai kesulitan/hambatan dasar murid, kebutuhan scaffolding/bimbingan personal intensif melalui media konkret/visual, serta perlakuan afektif penuh kehangatan KBC.
-   - Materi Pelajaran (WAJIB DIURAIKAN SANGAT LENGKAP, DETAIL, & KOMPREHENSIF MEMUAT 6 POIN SUB-BAB UTAMA BERIKUT TANPA SIMBOL ASTERIKS ** ATAU *):
-     1. Pengertian, Etimologi, & Konsep Utama (Definisi mendalam, etimologi/istilah, dan pemahaman konsep secara utuh sesuai level MI).
-     2. Landasan Syariat & Dalil Al-Qur'an / Hadis atau Keilmuan Relevan (Lafaz Latin/terjemahan, landasan hukum/syariat, serta pesan moral spiritual utama yang terkandung).
-     3. Ketentuan, Syarat, Rukun, & Komponen Pokok (Syarat sah/wajib, kriteria teknis, atau elemen-elemen penting yang wajib dipahami cermat oleh murid).
-     4. Tata Cara, Urutan Langkah, & Adab Pembiasaan (Tahapan pelaksanaan runtut dari awal sampai akhir, keutamaan, serta adab-adab kebaikan terpuji).
-     5. Integrasi Nilai Panca Cinta KBC & Hikmah (Kaitan materi dengan Cinta Allah SWT & Rasul-Nya, Cinta Sesama, Cinta Lingkungan, dan Cinta Diri, serta hikmah emosional/sosial).
-     6. Penerapan Praktis & Pembiasaan Akhlak Sehari-hari (Contoh-contoh konkret aksi nyata dan pembiasaan positif yang langsung dipraktikkan di madrasah, rumah, dan masyarakat).
+   - Materi Pelajaran (WAJIB DIURAIKAN SANGAT LENGKAP, DETAIL, & KOMPREHENSIF MEMUAT 6 POIN SUB-BAB UTAMA YANG DISESUAIKAN DENGAN KARAKTERISTIK MATA PELAJARAN "${mataPelajaran}" TANPA SIMBOL ASTERIKS ** ATAU *):
+     1. Poin 1: Pengertian, Makna Filosofis / Etimologi, & Konsep Utama (Definisi mendalam, batasan konsep, dan esensi materi sesuai mata pelajaran ${mataPelajaran} untuk jenjang ${faseKelas}).
+     2. Poin 2: Landasan Keilmuan / Konstitusi / Syariat & Dalil Terkait (Untuk Pancasila/PKn: Sila Pancasila, UUD 1945, & Bhinneka Tunggal Ika; Untuk Mapel Agama: Ayat/Hadis; Untuk Sains/IPAS/Matematika: Fakta ilmiah/hukum alam & tadabbur ciptaan Tuhan; Untuk Bahasa: Kaidah kebahasaan & etika tutur santun).
+     3. Poin 3: Karakteristik, Komponen Pokok, & Nilai Kunci (Sesuaikan dengan mapel: Untuk Pancasila -> Nilai Luhur, Hak & Kewajiban, Prinsip Persatuan; Untuk Sains/IPAS -> Struktur, Ciri-Ciri, Sifat; Untuk Bahasa -> Ciri Kebahasaan, Unsur Pembangun; Untuk Matematika -> Sifat Rumus & Pola; Untuk Agama/Fikih -> Ketentuan, Syarat, & Rukun).
+     4. Poin 4: Tata Cara, Prosedur / Langkah Kerja, & Adab Pembiasaan (Tahapan runtut menyelesaikan masalah/praktik/bermusyawarah/ibadah beserta adab mulia).
+     5. Poin 5: Integrasi Nilai Panca Cinta KBC & Hikmah (Kaitan materi dengan Panca Cinta KBC, cinta tanah air, kasih sayang sesama, cinta alam, dan kedamaian hati).
+     6. Poin 6: Penerapan Praktis & Pembiasaan Hidup Nyata Sehari-hari (Contoh-contoh konkret aksi nyata dan pembiasaan positif di madrasah, rumah, dan masyarakat).
    - Dimensi Profil Lulusan: Cantumkan 3-4 dimensi Profil Pelajar Pancasila & Rahmatan lil 'Alamin yang PALING RELEVAN dengan materi "${materi}". WAJIB MENGGUNAKAN FORMAT "Nama Dimensi: Uraian/deskripsi rinci..." yang menjelaskan secara spesifik bagaimana dimensi karakter tersebut ditumbuhkan dan diwujudkan melalui materi "${materi}".
    - Topik Panca Cinta: Cantumkan 2-3 pilar Panca Cinta KBC yang PALING RELEVAN dengan materi "${materi}". WAJIB MENGGUNAKAN FORMAT "Nama Panca Cinta: Uraian/deskripsi rinci..." yang menjelaskan secara spesifik bagaimana nilai cinta tersebut dipraktikkan secara nyata melalui materi "${materi}".
    - Materi Integrasi KBC: Uraikan secara rinci dan komprehensif bagaimana kehangatan sapaan, kelembutan tutur kata, empati sosial, dan pembiasaan aksi kebaikan terintegrasi dalam materi.
@@ -1177,12 +1177,10 @@ app.post('/api/generate-materi-uraian', async (req, res) => {
       });
     }
 
-    const {
-      mataPelajaran = 'Akidah Akhlak',
-      faseKelas = 'Fase B (Kelas III MI)',
-      judulMateri = 'Meneladani Sifat Ar-Rahman dalam Kasih Sayang',
-      topikPancaCinta = []
-    } = req.body;
+    const mataPelajaran = req.body.mataPelajaran || req.body.mapel || 'Pendidikan Pancasila';
+    const faseKelas = req.body.faseKelas || req.body.kelas || 'Fase B (Kelas IV MI)';
+    const judulMateri = req.body.judulMateri || req.body.topik || req.body.materi || 'Bhinneka Tunggal Ika';
+    const topikPancaCinta = req.body.topikPancaCinta || req.body.pancaCinta || [];
 
     const ai = new GoogleGenAI({
       apiKey,
@@ -1202,18 +1200,18 @@ Buatkan URAIAN MATERI PELAJARAN yang SANGAT RUNTUT, LENGKAP, TERSTRUKTUR, SANGAT
 
 Petunjuk Struktur Wajib (Gunakan teks biasa TANPA simbol markdown asteriks ** atau *):
 1. Gunakan penomoran poin 1 sampai 6 dengan judul sub-materi jelas dan uraian penjelasan rinci. Jangan gunakan simbol ** atau * untuk cetak tebal.
-2. Wajib mencakup 6 sub-bahasan utama berikut secara komprehensif:
-   - Poin 1: Pengertian, Etimologi, & Konsep Utama (Penjelasan rinci konsep dasar, etimologi istilah, dan pemahaman awal yang utuh).
-   - Poin 2: Landasan Syariat & Dalil Al-Qur'an / Hadis atau Keilmuan Relevan (Teks Latin/terjemahan, landasan hukum/syariat, serta pesan moral spiritual utama).
-   - Poin 3: Ketentuan, Syarat, Rukun, & Komponen Pokok (Syarat sah/wajib, kriteria teknis, atau elemen-elemen penting yang wajib dipahami cermat).
-   - Poin 4: Tata Cara, Urutan Langkah, & Adab Pembiasaan (Tahapan pelaksanaan runtut dari awal sampai akhir, keutamaan, serta adab-adab kebaikan terpuji).
-   - Poin 5: Integrasi Nilai Panca Cinta KBC & Hikmah (Kaitan materi dengan Panca Cinta KBC, hikmah emosional, kehangatan hubungan, dan kepedulian sosial).
-   - Poin 6: Penerapan Praktis & Pembiasaan Akhlak Sehari-hari (Contoh-contoh konkret aksi nyata dan pembiasaan positif di sekolah, rumah, dan masyarakat).
-3. Bahasa disesuaikan dengan tingkat perkembangan emosional & kognitif murid ${faseKelas}, namun tetap kaya materi akademik & spiritual.
+2. Wajib mencakup 6 sub-bahasan utama yang DISESUAIKAN DENGAN KARAKTERISTIK MATA PELAJARAN "${mataPelajaran}":
+   - Poin 1: Pengertian, Makna Filosofis / Etimologi, & Konsep Utama (Penjelasan rinci konsep dasar, batasan materi, dan pemahaman awal yang utuh mengenai materi ${judulMateri}).
+   - Poin 2: Landasan Keilmuan / Konstitusi / Syariat & Dalil Terkait (Untuk Pendidikan Pancasila/PKn: Sila Pancasila, UUD 1945, & Bhinneka Tunggal Ika; Untuk Mapel Agama: Ayat Al-Qur'an/Hadis; Untuk Sains/IPAS/Matematika: Fakta ilmiah/hukum alam & tadabbur ciptaan Tuhan; Untuk Bahasa: Kaidah kebahasaan baku & etika tutur santun).
+   - Poin 3: Karakteristik, Komponen Pokok, & Nilai Kunci (Sesuaikan konteks mapel: Untuk Pancasila -> Nilai Luhur, Hak & Kewajiban, Prinsip Kebangsaan; Untuk Sains/IPAS -> Ciri Khusus, Struktur, Komponen; Untuk Bahasa -> Ciri Kebahasaan, Unsur Teks; Untuk Matematika -> Sifat Rumus & Pola; Untuk Agama/Fikih -> Ketentuan, Syarat, & Rukun).
+   - Poin 4: Tata Cara, Prosedur / Langkah Kerja, & Adab Pembiasaan (Tahapan runtut dalam praktik, bermusyawarah, menyelesaikan masalah, atau ibadah beserta adab mulia).
+   - Poin 5: Integrasi Nilai Panca Cinta KBC & Hikmah (Kaitan materi dengan Panca Cinta KBC, cinta tanah air, kasih sayang sesama, cinta alam, dan kedamaian hati).
+   - Poin 6: Penerapan Praktis & Pembiasaan Hidup Nyata Sehari-hari (Contoh-contoh konkret aksi nyata dan pembiasaan positif di sekolah/madrasah, rumah, dan masyarakat).
+3. Bahasa disesuaikan dengan tingkat perkembangan emosional & kognitif murid ${faseKelas}, namun tetap kaya materi akademik & spiritual/moral.
 
 Kembalikan respon JSON persis dengan format berikut (tanpa simbol **):
 {
-  "uraianMateri": "1. Pengertian, Etimologi, & Konsep Utama: ...\n\n2. Landasan Syariat & Dalil: ...\n\n3. Ketentuan, Syarat, & Rukun: ...\n\n4. Tata Cara & Adab Pembiasaan: ...\n\n5. Integrasi Panca Cinta & Hikmah: ...\n\n6. Penerapan Praktis Sehari-hari: ...",
+  "uraianMateri": "1. Pengertian, Makna, & Konsep Utama: ...\\n\\n2. Landasan Keilmuan / Konstitusi / Dalil: ...\\n\\n3. Karakteristik / Komponen Pokok: ...\\n\\n4. Tata Cara / Prosedur & Adab: ...\\n\\n5. Integrasi Panca Cinta & Hikmah: ...\\n\\n6. Penerapan Praktis Sehari-hari: ...",
   "capaianPembelajaranDefault": "Peserta didik mampu memahami..."
 }`;
 
@@ -1262,12 +1260,10 @@ app.post('/api/generate-quiz-media', async (req, res) => {
       });
     }
 
-    const {
-      mataPelajaran = 'Akidah Akhlak',
-      materi = 'Meneladani Sifat Ar-Rahman dalam Kasih Sayang',
-      faseKelas = 'Fase B (Kelas III MI)',
-      jumlahSoal = 25
-    } = req.body;
+    const mataPelajaran = req.body.mataPelajaran || req.body.mapel || 'Pendidikan Pancasila';
+    const materi = req.body.materi || req.body.judulMateri || req.body.topik || 'Materi Pembelajaran';
+    const faseKelas = req.body.faseKelas || req.body.kelas || 'Fase B (Kelas IV MI)';
+    const jumlahSoal = req.body.jumlahSoal || req.body.targetJumlahSoal || 25;
 
     const ai = new GoogleGenAI({
       apiKey,

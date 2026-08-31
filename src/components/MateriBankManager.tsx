@@ -3,6 +3,7 @@ import { MateriBankItem, MAPEL_MI_OPTIONS, PANCA_CINTA_OPTIONS, DEFAULT_TAHUN_AJ
 import { UserSession } from '../utils/auth';
 import { loadCustomMapel, saveCustomMapel, addMasterMapel, deleteMasterMapel, loadCustomTahunAjaran, saveCustomTahunAjaran, loadActiveTahunAjaran, loadMasterMapelList, loadDeletedMapel, loadDeletedMapelSet, isMapelDeleted } from '../utils/storage';
 import { safeFetchJson } from '../utils/apiHelper';
+import { getTemplate6SubBab } from '../utils/templateHelper';
 import { 
   BookMarked, 
   Search, 
@@ -1037,7 +1038,7 @@ export const MateriBankManager: React.FC<MateriBankManagerProps> = ({
                     <button
                       type="button"
                       onClick={() => {
-                        const template = `1. Pengertian, Etimologi, & Konsep Utama: Uraikan definisi mendalam dan batasan konsep dari materi ${formJudul || 'pelajaran'}.\n\n2. Landasan Syariat & Dalil Al-Qur'an / Hadis / Keilmuan Relevan: Tuliskan lafaz Latin/terjemahan ayat/hadis atau landasan teori yang relevan.\n\n3. Ketentuan, Syarat, Rukun, & Komponen Pokok: Jelaskan kriteria teknis, syarat sah/wajib, rukun, atau elemen penting yang wajib dikuasai.\n\n4. Tata Cara, Urutan Langkah, & Adab Pembiasaan: Jabarkan tahapan pelaksanaan secara runtut dari awal hingga akhir beserta adab-adab terpuji.\n\n5. Integrasi Nilai Panca Cinta KBC & Hikmah: Hubungkan materi dengan pilar Panca Cinta KBC, kehangatan empati, serta hikmah emosional/sosial.\n\n6. Penerapan Praktis & Pembiasaan Akhlak Sehari-hari: Berikan contoh-contoh tindakan nyata murid di madrasah, rumah, dan lingkungan masyarakat.`;
+                        const template = getTemplate6SubBab(formMapel, formJudul);
                         setFormUraian(template);
                       }}
                       className="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold px-2 py-1 rounded-lg text-[10px] border border-slate-300 transition-all"
