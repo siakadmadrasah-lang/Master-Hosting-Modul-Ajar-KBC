@@ -9,19 +9,17 @@ async function generateHostingZip() {
   const distDir = path.join(process.cwd(), 'dist');
   const publicDir = path.join(process.cwd(), 'public');
 
-  // Perform a vite build only if dist does not already exist
-  if (!fs.existsSync(distDir)) {
-    console.log('🔨 Building Vite static bundle before creating ZIP...');
-    try {
-      execSync('npx vite build', { stdio: 'inherit' });
-    } catch (err) {
-      console.error('Failed to run vite build:', err);
-    }
+  // Build fresh Vite static bundle to include latest configs
+  console.log('🔨 Building Vite static bundle before creating ZIP...');
+  try {
+    execSync('npx vite build', { stdio: 'inherit' });
+  } catch (err) {
+    console.error('Failed to run vite build:', err);
   }
 
-  // Ensure latest public/index.php and public/api.php are copied directly into dist/
+  // Ensure latest public/index.php, public/api.php, .htaccess, and database.sql are copied directly into dist/
   if (fs.existsSync(publicDir) && fs.existsSync(distDir)) {
-    const phpFiles = ['index.php', 'api.php', '.htaccess'];
+    const phpFiles = ['index.php', 'api.php', '.htaccess', 'database.sql'];
     for (const phpFile of phpFiles) {
       const src = path.join(publicDir, phpFile);
       const dst = path.join(distDir, phpFile);
@@ -32,10 +30,13 @@ async function generateHostingZip() {
   }
 
   // Clean old zip files to avoid nested zipping or stale artifacts
-  const oldPublicZip = path.join(publicDir, 'hosting-dist.zip');
-  const oldDistZip = path.join(distDir, 'hosting-dist.zip');
-  if (fs.existsSync(oldPublicZip)) fs.unlinkSync(oldPublicZip);
-  if (fs.existsSync(oldDistZip)) fs.unlinkSync(oldDistZip);
+  const zipNames = ['hosting-dist.zip', 'cpanel-hosting-masbagoes.zip'];
+  for (const zName of zipNames) {
+    const pZip = path.join(publicDir, zName);
+    const dZip = path.join(distDir, zName);
+    if (fs.existsSync(pZip)) fs.unlinkSync(pZip);
+    if (fs.existsSync(dZip)) fs.unlinkSync(dZip);
+  }
 
   const zip = new JSZip();
 
@@ -84,24 +85,26 @@ async function generateHostingZip() {
     addDirToZip(pubDataDir, dataZipFolder);
   }
 
-  // 4. Generate ZIP content and write to public/hosting-dist.zip and dist/hosting-dist.zip
+  // 4. Generate ZIP content and write to public/ and dist/
   const content = await zip.generateAsync({ type: 'nodebuffer', compression: 'DEFLATE' });
   
-  fs.writeFileSync(oldPublicZip, content);
-
-  if (fs.existsSync(distDir)) {
-    fs.writeFileSync(oldDistZip, content);
+  for (const zName of zipNames) {
+    fs.writeFileSync(path.join(publicDir, zName), content);
+    if (fs.existsSync(distDir)) {
+      fs.writeFileSync(path.join(distDir, zName), content);
+    }
   }
 
   // 5. Verify ZIP integrity
+  const verifyPath = path.join(publicDir, 'hosting-dist.zip');
   try {
-    execSync(`unzip -t "${oldPublicZip}"`, { stdio: 'pipe' });
+    execSync(`unzip -t "${verifyPath}"`, { stdio: 'pipe' });
     console.log('🔍 ZIP file integrity verified successfully!');
   } catch (verifyErr) {
     console.warn('⚠️ unzip test warning (falling back to JSZip validation):', verifyErr.message);
   }
 
-  console.log(`✅ hosting-dist.zip successfully created (${(content.length / 1024 / 1024).toFixed(2)} MB)`);
+  console.log(`✅ hosting-dist.zip and cpanel-hosting-masbagoes.zip successfully created (${(content.length / 1024 / 1024).toFixed(2)} MB)`);
 }
 
 generateHostingZip().catch(err => {

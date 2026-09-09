@@ -26,7 +26,7 @@ app.options(['/api/download/*', '/hosting-dist.zip', '/api.php', '/database.sql'
   return res.sendStatus(204);
 });
 
-app.get(['/api/download/hosting-dist.zip', '/hosting-dist.zip'], (_req, res) => {
+app.get(['/api/download/hosting-dist.zip', '/hosting-dist.zip', '/api/download/cpanel-hosting-masbagoes.zip', '/cpanel-hosting-masbagoes.zip', '/cpanel-hosting.zip'], (_req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
   
@@ -57,9 +57,10 @@ app.get(['/api/download/hosting-dist.zip', '/hosting-dist.zip'], (_req, res) => 
   const foundPath = [publicZipPath, distZipPath].find(p => fs.existsSync(p));
 
   if (foundPath && fs.existsSync(foundPath)) {
+    const requestedName = _req.path.includes('cpanel') ? 'cpanel-hosting-masbagoes.zip' : 'hosting-dist.zip';
     res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
     res.setHeader('Content-Type', 'application/zip');
-    res.setHeader('Content-Disposition', 'attachment; filename="hosting-dist.zip"');
+    res.setHeader('Content-Disposition', `attachment; filename="${requestedName}"`);
     return res.sendFile(foundPath);
   }
   return res.status(404).send('File ZIP hosting tidak dapat dibuat');

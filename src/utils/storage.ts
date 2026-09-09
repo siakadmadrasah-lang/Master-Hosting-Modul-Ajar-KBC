@@ -1388,9 +1388,9 @@ export function saveSupabaseConfig(config: SupabaseConfig): void {
 export const DEFAULT_MYSQL_CONFIG: MysqlConfig = {
   host: 'localhost',
   port: 3306,
-  user: 'jaenal_modulajar',
+  user: 'masbagoes_modulajar',
   password: 'masbagus15',
-  database: 'jaenal_modulajar',
+  database: 'masbagoes_modulajar',
   tableName: 'kbc_mi_app_settings',
   apiUrl: '',
   apiKey: '',
@@ -1403,15 +1403,20 @@ export function loadMysqlConfig(): MysqlConfig {
     const raw = localStorage.getItem(STORAGE_KEYS.MYSQL_CONFIG);
     if (!raw) return DEFAULT_MYSQL_CONFIG;
     const parsed = JSON.parse(raw);
+    const user = (parsed.user && parsed.user !== 'jaenal_modulajar') ? parsed.user : 'masbagoes_modulajar';
+    const database = (parsed.database && parsed.database !== 'jaenal_modulajar') ? parsed.database : 'masbagoes_modulajar';
+    const password = (parsed.password !== undefined && parsed.password !== '') ? parsed.password : 'masbagus15';
     return {
       ...DEFAULT_MYSQL_CONFIG,
       ...parsed,
       host: parsed.host || 'localhost',
-      user: parsed.user || 'jaenal_modulajar',
-      password: parsed.password !== undefined && parsed.password !== '' ? parsed.password : 'masbagus15',
-      database: parsed.database || 'jaenal_modulajar',
+      user,
+      password,
+      database,
+      tableName: parsed.tableName || 'kbc_mi_app_settings',
       apiUrl: parsed.apiUrl || '',
-      apiKey: parsed.apiKey || ''
+      apiKey: parsed.apiKey || '',
+      isEnabled: parsed.isEnabled !== undefined ? parsed.isEnabled : true
     };
   } catch (err) {
     return DEFAULT_MYSQL_CONFIG;

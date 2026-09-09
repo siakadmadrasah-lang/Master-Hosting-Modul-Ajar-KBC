@@ -20,9 +20,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 // Konfigurasi Database Default untuk Hosting Plesk / cPanel
 $host = isset($_REQUEST['host']) && !empty($_REQUEST['host']) ? $_REQUEST['host'] : 'localhost';
 $port = isset($_REQUEST['port']) ? intval($_REQUEST['port']) : 3306;
-$db_user = isset($_REQUEST['user']) && !empty($_REQUEST['user']) ? $_REQUEST['user'] : 'jaenal_modulajar';
+$db_user = isset($_REQUEST['user']) && !empty($_REQUEST['user']) ? $_REQUEST['user'] : 'masbagoes_modulajar';
 $db_pass = isset($_REQUEST['password']) && $_REQUEST['password'] !== '' ? $_REQUEST['password'] : 'masbagus15';
-$db_name = isset($_REQUEST['database']) && !empty($_REQUEST['database']) ? $_REQUEST['database'] : 'jaenal_modulajar';
+$db_name = isset($_REQUEST['database']) && !empty($_REQUEST['database']) ? $_REQUEST['database'] : 'masbagoes_modulajar';
 $table_name = isset($_REQUEST['table_name']) && !empty($_REQUEST['table_name']) ? preg_replace('/[^a-zA-Z0-9_]/', '', $_REQUEST['table_name']) : 'kbc_mi_app_settings';
 
 // Ambil input JSON jika permintaan dikirim lewat POST body

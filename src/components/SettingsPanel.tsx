@@ -4342,8 +4342,8 @@ ALTER TABLE ${supabaseForm.tableName || 'kbc_mi_app_settings'} DISABLE ROW LEVEL
                   <input
                     type="text"
                     required
-                    placeholder="Contoh: u12345_kbcuser"
-                    className="w-full px-3 py-2 border border-slate-300 rounded-xl text-xs focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white"
+                    placeholder="Contoh: masbagoes_modulajar"
+                    className="w-full px-3 py-2 border border-slate-300 rounded-xl text-xs focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white font-mono"
                     value={mysqlForm.user}
                     onChange={(e) => setMysqlForm(prev => ({ ...prev, user: e.target.value }))}
                   />
@@ -4356,8 +4356,8 @@ ALTER TABLE ${supabaseForm.tableName || 'kbc_mi_app_settings'} DISABLE ROW LEVEL
                   <div className="relative">
                     <input
                       type={showMysqlPassword ? 'text' : 'password'}
-                      placeholder="Password pengguna database"
-                      className="w-full pl-3 pr-10 py-2 border border-slate-300 rounded-xl text-xs focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white"
+                      placeholder="Password pengguna database (masbagus15)"
+                      className="w-full pl-3 pr-10 py-2 border border-slate-300 rounded-xl text-xs focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white font-mono"
                       value={mysqlForm.password || ''}
                       onChange={(e) => setMysqlForm(prev => ({ ...prev, password: e.target.value }))}
                     />
@@ -4380,8 +4380,8 @@ ALTER TABLE ${supabaseForm.tableName || 'kbc_mi_app_settings'} DISABLE ROW LEVEL
                   <input
                     type="text"
                     required
-                    placeholder="Contoh: u12345_kbc_db"
-                    className="w-full px-3 py-2 border border-slate-300 rounded-xl text-xs focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white"
+                    placeholder="Contoh: masbagoes_modulajar"
+                    className="w-full px-3 py-2 border border-slate-300 rounded-xl text-xs focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white font-mono"
                     value={mysqlForm.database}
                     onChange={(e) => setMysqlForm(prev => ({ ...prev, database: e.target.value }))}
                   />
@@ -4649,32 +4649,52 @@ ALTER TABLE ${supabaseForm.tableName || 'kbc_mi_app_settings'} DISABLE ROW LEVEL
 
             {/* PHP Bridge File & ZIP Download Section */}
             <div className="pt-3 border-t border-slate-200 space-y-3">
-              <div className="p-3.5 bg-blue-50 border border-blue-200 rounded-xl space-y-2">
+              <div className="p-4 bg-gradient-to-r from-blue-50 via-indigo-50 to-blue-50 border border-blue-200 rounded-xl space-y-3">
                 <div className="flex flex-wrap items-center justify-between gap-2 font-bold text-slate-900">
-                  <span className="flex items-center space-x-2 text-blue-900">
-                    <Download className="w-4 h-4 text-blue-600" />
-                    <span>Paket ZIP Aplikasi Siap Unggah (Plesk / cPanel):</span>
-                    <span className="bg-emerald-100 text-emerald-900 border border-emerald-300 text-[10px] px-2 py-0.5 rounded-md font-extrabold flex items-center space-x-1">
-                      <CheckCircle className="w-3 h-3 text-emerald-600" />
-                      <span>Siap Pakai</span>
+                  <div className="space-y-1">
+                    <span className="flex items-center space-x-2 text-blue-900">
+                      <Download className="w-4 h-4 text-blue-600" />
+                      <span>Paket ZIP cPanel / Plesk Hosting (Auto-Sync MySQL):</span>
+                      <span className="bg-emerald-100 text-emerald-900 border border-emerald-300 text-[10px] px-2 py-0.5 rounded-md font-extrabold flex items-center space-x-1">
+                        <CheckCircle className="w-3 h-3 text-emerald-600" />
+                        <span>Pre-Configured</span>
+                      </span>
                     </span>
-                  </span>
-                  <button
-                    type="button"
-                    onClick={() => handleSecureDownload('/api/download/hosting-dist.zip', 'hosting-dist.zip', true)}
-                    disabled={!!downloadingFile}
-                    className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-4 py-2 rounded-xl text-xs flex items-center space-x-2 transition-all shadow-sm scale-[1.02] cursor-pointer disabled:opacity-50"
-                  >
-                    {downloadingFile === 'hosting-dist.zip' ? (
-                      <Loader2 className="w-4 h-4 animate-spin" />
-                    ) : (
-                      <Download className="w-4 h-4" />
-                    )}
-                    <span>Unduh hosting-dist.zip (1.2 MB)</span>
-                  </button>
+                    <div className="text-[11px] text-blue-950 font-mono bg-blue-100/70 border border-blue-200 px-2 py-1 rounded-md inline-block">
+                      Akun: <strong>masbagoes_modulajar</strong> | Database: <strong>masbagoes_modulajar</strong> | Sync Otomatis: <strong>Aktif</strong>
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => handleSecureDownload('/api/download/cpanel-hosting-masbagoes.zip', 'cpanel-hosting-masbagoes.zip', true)}
+                      disabled={!!downloadingFile}
+                      className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-4 py-2 rounded-xl text-xs flex items-center space-x-2 transition-all shadow-sm cursor-pointer disabled:opacity-50"
+                    >
+                      {downloadingFile === 'cpanel-hosting-masbagoes.zip' ? (
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                      ) : (
+                        <Download className="w-4 h-4" />
+                      )}
+                      <span>Unduh ZIP cPanel (masbagoes_modulajar)</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => handleSecureDownload('/api/download/hosting-dist.zip', 'hosting-dist.zip', true)}
+                      disabled={!!downloadingFile}
+                      className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-4 py-2 rounded-xl text-xs flex items-center space-x-2 transition-all shadow-sm cursor-pointer disabled:opacity-50"
+                    >
+                      {downloadingFile === 'hosting-dist.zip' ? (
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                      ) : (
+                        <Download className="w-4 h-4" />
+                      )}
+                      <span>Unduh hosting-dist.zip</span>
+                    </button>
+                  </div>
                 </div>
                 <p className="text-[11px] text-blue-800/90 leading-relaxed">
-                  File ZIP ini berisi seluruh hasil kompilasi web statis (`index.html`, `assets/`, `api.php`, `.htaccess`, dan `database.sql`). Cukup unduh lalu ekstrak langsung ke dalam folder <strong>httpdocs</strong> atau <strong>public_html</strong> di hosting Plesk / cPanel Anda.
+                  File ZIP ini sudah terkonfigurasi dengan akun MySQL <strong>masbagoes_modulajar</strong> dan password <strong>masbagus15</strong>. Di dalamnya terdapat seluruh bundle web statis (<code>index.html</code>, <code>assets/</code>, <code>api.php</code>, <code>.htaccess</code>, dan <code>database.sql</code>). Cukup unduh lalu ekstrak langsung ke dalam folder <strong>public_html</strong> (cPanel) atau <strong>httpdocs</strong> (Plesk).
                 </p>
 
                 {/* Troubleshooting Guide Box for Hosting Upload Issues */}
