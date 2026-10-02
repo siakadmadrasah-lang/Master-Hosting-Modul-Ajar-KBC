@@ -1,0 +1,41 @@
+DirectoryIndex index.php index.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Force index.php for root /, /index.html, and subfolder index.html so PHP can inject dynamic absolute Open Graph tags
+  RewriteRule ^$ index.php [QSA,L]
+  RewriteRule ^index\.html$ index.php [QSA,L]
+  RewriteRule (.*)index\.html$ index.php [QSA,L]
+
+  # Direct /api/mysql/* to api.php for Plesk/cPanel PHP hosting
+  RewriteRule ^api/mysql/test$ api.php?action=test [QSA,L]
+  RewriteRule ^api/mysql/push$ api.php?action=push [QSA,L]
+  RewriteRule ^api/mysql/pull$ api.php?action=pull [QSA,L]
+  RewriteRule ^api/mysql/(.*)$ api.php?action=$1 [QSA,L]
+
+  # Direct /api/mapel-og-configs to api.php for Plesk/cPanel PHP hosting
+  RewriteCond %{REQUEST_METHOD} POST
+  RewriteRule ^api/mapel-og-configs$ api.php?action=save_mapel_og [QSA,L]
+  RewriteRule ^api/mapel-og-configs$ api.php?action=get_mapel_og [QSA,L]
+
+  # Direct /api/custom-og-image to api.php
+  RewriteRule ^api/custom-og-image$ api.php?action=custom_og_image [QSA,L]
+
+  # Serve existing physical files and directories directly (EXCEPT index.html)
+  RewriteCond %{REQUEST_URI} !index\.html$ [NC]
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # SPA Fallback to index.php (ensures dynamic absolute OG image URLs for WhatsApp)
+  RewriteRule ^ index.php [L]
+</IfModule>
+
+# Enable CORS Headers for API requests
+<IfModule mod_headers.c>
+  Header set Access-Control-Allow-Origin "*"
+  Header set Access-Control-Allow-Methods "GET, POST, OPTIONS, PUT, DELETE"
+  Header set Access-Control-Allow-Headers "Content-Type, Authorization, X-Requested-With"
+</IfModule>
+

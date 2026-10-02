@@ -1,0 +1,476 @@
+{
+  "al_qur_an_hadis": {
+    "title": "Kuis & Media Interaktif Al-Qur’an Hadis",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Al-Qur’an Hadis",
+    "imageUrl": "/data/og_mapel_al_qur_an_hadis.jpg",
+    "updatedAt": "2026-08-08T23:49:00.231Z"
+  },
+  "quran_hadis": {
+    "title": "Kuis & Media Interaktif Al-Qur’an Hadis",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Al-Qur’an Hadis",
+    "imageUrl": "/data/og_mapel_al_qur_an_hadis.jpg",
+    "updatedAt": "2026-08-08T23:49:00.231Z"
+  },
+  "akidah_akhlak": {
+    "title": "Kuis & Media Interaktif Akidah Akhlak",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Akidah Akhlak",
+    "imageUrl": "/data/og_mapel_akidah_akhlak.jpg",
+    "updatedAt": "2026-08-08T23:48:49.739Z"
+  },
+  "akidah": {
+    "title": "Kuis & Media Interaktif Akidah Akhlak",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Akidah Akhlak",
+    "imageUrl": "/data/og_mapel_akidah_akhlak.jpg",
+    "updatedAt": "2026-08-08T23:48:49.739Z"
+  },
+  "akhlak": {
+    "title": "Kuis & Media Interaktif Akidah Akhlak",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Akidah Akhlak",
+    "imageUrl": "/data/og_mapel_akidah_akhlak.jpg",
+    "updatedAt": "2026-08-08T23:48:49.739Z"
+  },
+  "fiqih": {
+    "title": "Kuis & Media Interaktif Fikih",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Fikih",
+    "imageUrl": "/data/og_mapel_fiqih.jpg",
+    "updatedAt": "2026-08-08T23:49:12.258Z"
+  },
+  "fikih": {
+    "title": "Kuis & Media Interaktif Fikih",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Fikih",
+    "imageUrl": "/data/og_mapel_fiqih.jpg",
+    "updatedAt": "2026-08-08T23:49:12.258Z"
+  },
+  "sejarah_kebudayaan_islam_ski": {
+    "title": "Kuis & Media Interaktif Sejarah Kebudayaan Islam (SKI)",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Sejarah Kebudayaan Islam (SKI)",
+    "imageUrl": "/data/og_mapel_sejarah_kebudayaan_islam_ski.jpg",
+    "updatedAt": "2026-08-08T23:49:19.350Z"
+  },
+  "ski": {
+    "title": "Kuis & Media Interaktif Sejarah Kebudayaan Islam (SKI)",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Sejarah Kebudayaan Islam (SKI)",
+    "imageUrl": "/data/og_mapel_sejarah_kebudayaan_islam_ski.jpg",
+    "updatedAt": "2026-08-08T23:49:19.350Z"
+  },
+  "bahasa_arab": {
+    "title": "Kuis & Media Interaktif Bahasa Arab",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Bahasa Arab",
+    "imageUrl": "/data/og_mapel_bahasa_arab.jpg",
+    "updatedAt": "2026-08-08T23:49:31.334Z"
+  },
+  "arab": {
+    "title": "Kuis & Media Interaktif Bahasa Arab",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Bahasa Arab",
+    "imageUrl": "/data/og_mapel_bahasa_arab.jpg",
+    "updatedAt": "2026-08-08T23:49:31.334Z"
+  },
+  "ipas": {
+    "title": "Kuis & Media Interaktif IPAS (Ilmu Pengetahuan Alam & Sosial)",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) IPAS (Ilmu Pengetahuan Alam & Sosial)",
+    "imageUrl": "/data/og_mapel_ipas.jpg",
+    "updatedAt": "2026-08-08T23:50:09.563Z"
+  },
+  "matematika": {
+    "title": "Kuis & Media Interaktif Matematika",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Matematika",
+    "imageUrl": "/data/og_mapel_matematika.jpg",
+    "updatedAt": "2026-08-08T23:50:01.215Z"
+  },
+  "bahasa_indonesia": {
+    "title": "Kuis & Media Interaktif Bahasa Indonesia",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Bahasa Indonesia",
+    "imageUrl": "/data/og_mapel_bahasa_indonesia.jpg",
+    "updatedAt": "2026-08-08T23:49:49.119Z"
+  },
+  "pendidikan_pancasila": {
+    "title": "Kuis & Media Interaktif Pendidikan Pancasila",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Pendidikan Pancasila",
+    "imageUrl": "/data/og_mapel_pendidikan_pancasila.jpg",
+    "updatedAt": "2026-08-08T23:49:38.659Z"
+  },
+  "pancasila": {
+    "title": "Kuis & Media Interaktif Pendidikan Pancasila",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Pendidikan Pancasila",
+    "imageUrl": "/data/og_mapel_pendidikan_pancasila.jpg",
+    "updatedAt": "2026-08-08T23:49:38.659Z"
+  },
+  "Akidah Akhlak": {
+    "title": "Kuis & Media Interaktif Akidah Akhlak",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Akidah Akhlak",
+    "imageUrl": "/data/og_mapel_akidah_akhlak.jpg",
+    "updatedAt": "2026-08-08T23:48:49.739Z"
+  },
+  "Bahasa Arab": {
+    "title": "Kuis & Media Interaktif Bahasa Arab",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Bahasa Arab",
+    "imageUrl": "/data/og_mapel_bahasa_arab.jpg",
+    "updatedAt": "2026-08-08T23:49:31.334Z"
+  },
+  "Sejarah Kebudayaan Islam (SKI)": {
+    "title": "Kuis & Media Interaktif Sejarah Kebudayaan Islam (SKI)",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Sejarah Kebudayaan Islam (SKI)",
+    "imageUrl": "/data/og_mapel_sejarah_kebudayaan_islam_ski.jpg",
+    "updatedAt": "2026-08-08T23:49:19.350Z"
+  },
+  "Al-Qur’an Hadis": {
+    "title": "Kuis & Media Interaktif Al-Qur’an Hadis",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Al-Qur’an Hadis",
+    "imageUrl": "/data/og_mapel_al_qur_an_hadis.jpg",
+    "updatedAt": "2026-08-08T23:49:00.231Z"
+  },
+  "Fikih": {
+    "title": "Kuis & Media Interaktif Fikih",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Fikih",
+    "imageUrl": "/data/og_mapel_fiqih.jpg",
+    "updatedAt": "2026-08-08T23:49:12.258Z"
+  },
+  "Pendidikan Pancasila": {
+    "title": "Kuis & Media Interaktif Pendidikan Pancasila",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Pendidikan Pancasila",
+    "imageUrl": "/data/og_mapel_pendidikan_pancasila.jpg",
+    "updatedAt": "2026-08-08T23:49:38.659Z"
+  },
+  "Bahasa Indonesia": {
+    "title": "Kuis & Media Interaktif Bahasa Indonesia",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Bahasa Indonesia",
+    "imageUrl": "/data/og_mapel_bahasa_indonesia.jpg",
+    "updatedAt": "2026-08-08T23:49:49.119Z"
+  },
+  "Matematika": {
+    "title": "Kuis & Media Interaktif Matematika",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Matematika",
+    "imageUrl": "/data/og_mapel_matematika.jpg",
+    "updatedAt": "2026-08-08T23:50:01.215Z"
+  },
+  "IPAS (Ilmu Pengetahuan Alam & Sosial)": {
+    "title": "Kuis & Media Interaktif IPAS (Ilmu Pengetahuan Alam & Sosial)",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) IPAS (Ilmu Pengetahuan Alam & Sosial)",
+    "imageUrl": "/data/og_mapel_ipas.jpg",
+    "updatedAt": "2026-08-08T23:50:09.563Z"
+  },
+  "pjok": {
+    "title": "Kuis & Media Interaktif PJOK (Pendidikan Jasmani, Olahraga, & Kesehatan) - Modul Ajar KBC",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) PJOK. Kuis interaktif, gerak & kebugaran jasmani, flashcard, & media digital.",
+    "imageUrl": "/data/og_mapel_pjok.jpg",
+    "updatedAt": "2026-08-09T07:01:45.877Z"
+  },
+  "penjas": {
+    "title": "Kuis & Media Interaktif PJOK (Pendidikan Jasmani, Olahraga, & Kesehatan) - Modul Ajar KBC",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) PJOK. Kuis interaktif, gerak & kebugaran jasmani, flashcard, & media digital.",
+    "imageUrl": "/data/og_mapel_pjok.jpg",
+    "updatedAt": "2026-08-09T07:01:45.877Z"
+  },
+  "penjaskes": {
+    "title": "Kuis & Media Interaktif PJOK (Pendidikan Jasmani, Olahraga, & Kesehatan) - Modul Ajar KBC",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) PJOK. Kuis interaktif, gerak & kebugaran jasmani, flashcard, & media digital.",
+    "imageUrl": "/data/og_mapel_pjok.jpg",
+    "updatedAt": "2026-08-09T07:01:45.877Z"
+  },
+  "olahraga": {
+    "title": "Kuis & Media Interaktif PJOK (Pendidikan Jasmani, Olahraga, & Kesehatan) - Modul Ajar KBC",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) PJOK. Kuis interaktif, gerak & kebugaran jasmani, flashcard, & media digital.",
+    "imageUrl": "/data/og_mapel_pjok.jpg",
+    "updatedAt": "2026-08-09T07:01:45.877Z"
+  },
+  "jasmani": {
+    "title": "Kuis & Media Interaktif PJOK (Pendidikan Jasmani, Olahraga, & Kesehatan) - Modul Ajar KBC",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) PJOK. Kuis interaktif, gerak & kebugaran jasmani, flashcard, & media digital.",
+    "imageUrl": "/data/og_mapel_pjok.jpg",
+    "updatedAt": "2026-08-09T07:01:45.877Z"
+  },
+  "PJOK": {
+    "title": "Kuis & Media Interaktif PJOK (Pendidikan Jasmani, Olahraga, & Kesehatan) - Modul Ajar KBC",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) PJOK. Kuis interaktif, gerak & kebugaran jasmani, flashcard, & media digital.",
+    "imageUrl": "/data/og_mapel_pjok.jpg",
+    "updatedAt": "2026-08-09T07:01:45.877Z"
+  },
+  "Pendidikan Jasmani, Olahraga, & Kesehatan": {
+    "title": "Kuis & Media Interaktif PJOK (Pendidikan Jasmani, Olahraga, & Kesehatan) - Modul Ajar KBC",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) PJOK. Kuis interaktif, gerak & kebugaran jasmani, flashcard, & media digital.",
+    "imageUrl": "/data/og_mapel_pjok.jpg",
+    "updatedAt": "2026-08-09T07:01:45.877Z"
+  },
+  "Pendidikan Jasmani": {
+    "title": "Kuis & Media Interaktif PJOK (Pendidikan Jasmani, Olahraga, & Kesehatan) - Modul Ajar KBC",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) PJOK. Kuis interaktif, gerak & kebugaran jasmani, flashcard, & media digital.",
+    "imageUrl": "/data/og_mapel_pjok.jpg",
+    "updatedAt": "2026-08-09T07:01:45.877Z"
+  },
+  "pjok_penjas": {
+    "title": "Kuis & Media Interaktif PJOK (Pendidikan Jasmani, Olahraga, & Kesehatan) - Modul Ajar KBC",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) PJOK. Kuis interaktif, gerak & kebugaran jasmani, flashcard, & media digital.",
+    "imageUrl": "/data/og_mapel_pjok.jpg",
+    "updatedAt": "2026-08-09T07:01:45.877Z"
+  },
+  "bahasa_inggris": {
+    "title": "Kuis & Media Interaktif Bahasa Inggris",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Bahasa Inggris",
+    "imageUrl": "/data/og_mapel_bahasa_inggris.jpg?v=1786358281894",
+    "updatedAt": "2026-08-10T10:38:01.894Z"
+  },
+  "inggris": {
+    "title": "Kuis & Media Interaktif Bahasa Inggris",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Bahasa Inggris",
+    "imageUrl": "/data/og_mapel_bahasa_inggris.jpg?v=1786358281894",
+    "updatedAt": "2026-08-10T10:38:01.894Z"
+  },
+  "Bahasa Inggris": {
+    "title": "Kuis & Media Interaktif Bahasa Inggris",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Bahasa Inggris",
+    "imageUrl": "/data/og_mapel_bahasa_inggris.jpg?v=1786358281894",
+    "updatedAt": "2026-08-10T10:38:01.894Z"
+  },
+  "English": {
+    "title": "Kuis & Media Interaktif Bahasa Inggris",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Bahasa Inggris",
+    "imageUrl": "/data/og_mapel_bahasa_inggris.jpg?v=1786358281894",
+    "updatedAt": "2026-08-10T10:38:01.894Z"
+  },
+  "bahasa_jawa": {
+    "title": "Kuis & Media Interaktif Bahasa Jawa",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Bahasa Jawa",
+    "imageUrl": "/data/og_mapel_bahasa_jawa.jpg?v=1786358292409",
+    "updatedAt": "2026-08-10T10:38:12.409Z"
+  },
+  "jawa": {
+    "title": "Kuis & Media Interaktif Bahasa Jawa",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Bahasa Jawa",
+    "imageUrl": "/data/og_mapel_bahasa_jawa.jpg?v=1786358292409",
+    "updatedAt": "2026-08-10T10:38:12.409Z"
+  },
+  "Bahasa Jawa": {
+    "title": "Kuis & Media Interaktif Bahasa Jawa",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Bahasa Jawa",
+    "imageUrl": "/data/og_mapel_bahasa_jawa.jpg?v=1786358292409",
+    "updatedAt": "2026-08-10T10:38:12.409Z"
+  },
+  "seni_budaya": {
+    "title": "Kuis & Media Interaktif Seni Budaya & Prakarya - Modul Ajar KBC",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Seni Budaya & Prakarya. Kuis interaktif & media digital.",
+    "imageUrl": "/data/og_mapel_seni_budaya.jpg",
+    "updatedAt": "2026-08-09T07:01:45.877Z"
+  },
+  "seni": {
+    "title": "Kuis & Media Interaktif Seni Budaya & Prakarya - Modul Ajar KBC",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Seni Budaya & Prakarya. Kuis interaktif & media digital.",
+    "imageUrl": "/data/og_mapel_seni_budaya.jpg",
+    "updatedAt": "2026-08-09T07:01:45.877Z"
+  },
+  "prakarya": {
+    "title": "Kuis & Media Interaktif Seni Budaya & Prakarya - Modul Ajar KBC",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Seni Budaya & Prakarya. Kuis interaktif & media digital.",
+    "imageUrl": "/data/og_mapel_seni_budaya.jpg",
+    "updatedAt": "2026-08-09T07:01:45.877Z"
+  },
+  "seni_rupa": {
+    "title": "Kuis & Media Interaktif Seni Budaya & Prakarya - Modul Ajar KBC",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Seni Budaya & Prakarya. Kuis interaktif & media digital.",
+    "imageUrl": "/data/og_mapel_seni_budaya.jpg",
+    "updatedAt": "2026-08-09T07:01:45.877Z"
+  },
+  "seni_musik": {
+    "title": "Kuis & Media Interaktif Seni Budaya & Prakarya - Modul Ajar KBC",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Seni Budaya & Prakarya. Kuis interaktif & media digital.",
+    "imageUrl": "/data/og_mapel_seni_budaya.jpg",
+    "updatedAt": "2026-08-09T07:01:45.877Z"
+  },
+  "Seni Budaya": {
+    "title": "Kuis & Media Interaktif Seni Budaya & Prakarya - Modul Ajar KBC",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Seni Budaya & Prakarya. Kuis interaktif & media digital.",
+    "imageUrl": "/data/og_mapel_seni_budaya.jpg",
+    "updatedAt": "2026-08-09T07:01:45.877Z"
+  },
+  "Seni Budaya & Prakarya": {
+    "title": "Kuis & Media Interaktif Seni Budaya & Prakarya",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Seni Budaya & Prakarya",
+    "imageUrl": "/data/og_mapel_seni_budaya_prakarya.jpg?v=1786358310606",
+    "updatedAt": "2026-08-10T10:38:30.606Z"
+  },
+  "p5_ppra": {
+    "title": "Kuis & Media Interaktif Proyek P5 / PPRA - Modul Ajar KBC",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Proyek Penguatan Profil Pelajar Pancasila & Rahmatan Lil Alamin.",
+    "imageUrl": "/data/og_mapel_p5_ppra.jpg",
+    "updatedAt": "2026-08-09T07:01:45.877Z"
+  },
+  "p5": {
+    "title": "Kuis & Media Interaktif Proyek P5 / PPRA - Modul Ajar KBC",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Proyek Penguatan Profil Pelajar Pancasila & Rahmatan Lil Alamin.",
+    "imageUrl": "/data/og_mapel_p5_ppra.jpg",
+    "updatedAt": "2026-08-09T07:01:45.877Z"
+  },
+  "ppra": {
+    "title": "Kuis & Media Interaktif Proyek P5 / PPRA - Modul Ajar KBC",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Proyek Penguatan Profil Pelajar Pancasila & Rahmatan Lil Alamin.",
+    "imageUrl": "/data/og_mapel_p5_ppra.jpg",
+    "updatedAt": "2026-08-09T07:01:45.877Z"
+  },
+  "proyek_p5": {
+    "title": "Kuis & Media Interaktif Proyek P5 / PPRA - Modul Ajar KBC",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Proyek Penguatan Profil Pelajar Pancasila & Rahmatan Lil Alamin.",
+    "imageUrl": "/data/og_mapel_p5_ppra.jpg",
+    "updatedAt": "2026-08-09T07:01:45.877Z"
+  },
+  "Proyek P5": {
+    "title": "Kuis & Media Interaktif Proyek P5 / PPRA - Modul Ajar KBC",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Proyek Penguatan Profil Pelajar Pancasila & Rahmatan Lil Alamin.",
+    "imageUrl": "/data/og_mapel_p5_ppra.jpg",
+    "updatedAt": "2026-08-09T07:01:45.877Z"
+  },
+  "P5/PPRA": {
+    "title": "Kuis & Media Interaktif Proyek P5 / PPRA - Modul Ajar KBC",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Proyek Penguatan Profil Pelajar Pancasila & Rahmatan Lil Alamin.",
+    "imageUrl": "/data/og_mapel_p5_ppra.jpg",
+    "updatedAt": "2026-08-09T07:01:45.877Z"
+  },
+  "quran": {
+    "title": "Kuis & Media Interaktif Al-Qur’an Hadis",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Al-Qur’an Hadis",
+    "imageUrl": "/data/og_mapel_al_qur_an_hadis.jpg",
+    "updatedAt": "2026-08-08T23:49:00.231Z"
+  },
+  "hadis": {
+    "title": "Kuis & Media Interaktif Al-Qur’an Hadis",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Al-Qur’an Hadis",
+    "imageUrl": "/data/og_mapel_al_qur_an_hadis.jpg",
+    "updatedAt": "2026-08-08T23:49:00.231Z"
+  },
+  "aqidah": {
+    "title": "Kuis & Media Interaktif Akidah Akhlak",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Akidah Akhlak",
+    "imageUrl": "/data/og_mapel_akidah_akhlak.jpg",
+    "updatedAt": "2026-08-08T23:48:49.739Z"
+  },
+  "aqidah_akhlak": {
+    "title": "Kuis & Media Interaktif Akidah Akhlak",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Akidah Akhlak",
+    "imageUrl": "/data/og_mapel_akidah_akhlak.jpg",
+    "updatedAt": "2026-08-08T23:48:49.739Z"
+  },
+  "sejarah": {
+    "title": "Kuis & Media Interaktif Sejarah Kebudayaan Islam (SKI)",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Sejarah Kebudayaan Islam (SKI)",
+    "imageUrl": "/data/og_mapel_sejarah_kebudayaan_islam_ski.jpg",
+    "updatedAt": "2026-08-08T23:49:19.350Z"
+  },
+  "ipa": {
+    "title": "Kuis & Media Interaktif IPAS (Ilmu Pengetahuan Alam & Sosial)",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) IPAS (Ilmu Pengetahuan Alam & Sosial)",
+    "imageUrl": "/data/og_mapel_ipas.jpg",
+    "updatedAt": "2026-08-08T23:50:09.563Z"
+  },
+  "ips": {
+    "title": "Kuis & Media Interaktif IPAS (Ilmu Pengetahuan Alam & Sosial)",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) IPAS (Ilmu Pengetahuan Alam & Sosial)",
+    "imageUrl": "/data/og_mapel_ipas.jpg",
+    "updatedAt": "2026-08-08T23:50:09.563Z"
+  },
+  "mtk": {
+    "title": "Kuis & Media Interaktif Matematika",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Matematika",
+    "imageUrl": "/data/og_mapel_matematika.jpg",
+    "updatedAt": "2026-08-08T23:50:01.215Z"
+  },
+  "indonesia": {
+    "title": "Kuis & Media Interaktif Bahasa Indonesia",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Bahasa Indonesia",
+    "imageUrl": "/data/og_mapel_bahasa_indonesia.jpg",
+    "updatedAt": "2026-08-08T23:49:49.119Z"
+  },
+  "english": {
+    "title": "Kuis & Media Interaktif Bahasa Inggris",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Bahasa Inggris",
+    "imageUrl": "/data/og_mapel_bahasa_inggris.jpg?v=1786358281894",
+    "updatedAt": "2026-08-10T10:38:01.894Z"
+  },
+  "proyek": {
+    "title": "Kuis & Media Interaktif Proyek P5 / PPRA - Modul Ajar KBC",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Proyek Penguatan Profil Pelajar Pancasila & Rahmatan Lil Alamin.",
+    "imageUrl": "/data/og_mapel_p5_ppra.jpg",
+    "updatedAt": "2026-08-09T07:01:45.877Z"
+  },
+  "b_inggris": {
+    "title": "Kuis & Media Interaktif Bahasa Inggris",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Bahasa Inggris",
+    "imageUrl": "/data/og_mapel_bahasa_inggris.jpg?v=1786358281894",
+    "updatedAt": "2026-08-10T10:38:01.894Z"
+  },
+  "ke_nu_an": {
+    "title": "Kuis & Media Interaktif Ke NU an",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Ke NU an",
+    "imageUrl": "/data/og_mapel_ke_nu_an.jpg",
+    "updatedAt": "2026-08-10T10:36:00.000Z"
+  },
+  "Ke NU an": {
+    "title": "Kuis & Media Interaktif Ke NU an",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Ke NU an",
+    "imageUrl": "/data/og_mapel_ke_nu_an.jpg",
+    "updatedAt": "2026-08-10T10:36:00.000Z"
+  },
+  "ke_nu": {
+    "title": "Kuis & Media Interaktif Ke NU an",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Ke NU an",
+    "imageUrl": "/data/og_mapel_ke_nu_an.jpg",
+    "updatedAt": "2026-08-10T10:36:00.000Z"
+  },
+  "aswaja": {
+    "title": "Kuis & Media Interaktif Ke NU an",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Ke NU an",
+    "imageUrl": "/data/og_mapel_ke_nu_an.jpg",
+    "updatedAt": "2026-08-10T10:36:00.000Z"
+  },
+  "nu": {
+    "title": "Kuis & Media Interaktif Ke NU an",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Ke NU an",
+    "imageUrl": "/data/og_mapel_ke_nu_an.jpg",
+    "updatedAt": "2026-08-10T10:36:00.000Z"
+  },
+  "nahdlatul_ulama": {
+    "title": "Kuis & Media Interaktif Ke NU an",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Ke NU an",
+    "imageUrl": "/data/og_mapel_ke_nu_an.jpg",
+    "updatedAt": "2026-08-10T10:36:00.000Z"
+  },
+  "kemuhammadiyahan": {
+    "title": "Kuis & Media Interaktif Ke NU an",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Ke NU an",
+    "imageUrl": "/data/og_mapel_ke_nu_an.jpg",
+    "updatedAt": "2026-08-10T10:36:00.000Z"
+  },
+  "ke_nu_an_aswaja": {
+    "title": "Kuis & Media Interaktif Ke NU an",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Ke NU an",
+    "imageUrl": "/data/og_mapel_ke_nu_an.jpg",
+    "updatedAt": "2026-08-10T10:36:00.000Z"
+  },
+  "mulok": {
+    "title": "Modul Ajar & Kuis Mulok",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Mulok",
+    "imageUrl": "https://images.unsplash.com/photo-1542810634-71277d95dcbb?auto=format&fit=crop&w=1200&q=80",
+    "updatedAt": "2026-08-10T09:31:41.054Z"
+  },
+  "Mulok": {
+    "title": "Modul Ajar & Kuis Mulok",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Mulok",
+    "imageUrl": "https://images.unsplash.com/photo-1542810634-71277d95dcbb?auto=format&fit=crop&w=1200&q=80",
+    "updatedAt": "2026-08-10T09:31:41.054Z"
+  },
+  "pendidikan_jasmani_olahraga_kesehatan": {
+    "title": "Kuis & Media Interaktif Pendidikan Jasmani, Olahraga & Kesehatan",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Pendidikan Jasmani, Olahraga & Kesehatan",
+    "imageUrl": "/data/og_mapel_pendidikan_jasmani_olahraga_kesehatan.jpg?v=1786358301740",
+    "updatedAt": "2026-08-10T10:38:21.740Z"
+  },
+  "Pendidikan Jasmani, Olahraga & Kesehatan": {
+    "title": "Kuis & Media Interaktif Pendidikan Jasmani, Olahraga & Kesehatan",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Pendidikan Jasmani, Olahraga & Kesehatan",
+    "imageUrl": "/data/og_mapel_pendidikan_jasmani_olahraga_kesehatan.jpg?v=1786358301740",
+    "updatedAt": "2026-08-10T10:38:21.740Z"
+  },
+  "seni_budaya_prakarya": {
+    "title": "Kuis & Media Interaktif Seni Budaya & Prakarya",
+    "desc": "Aplikasi Modul Ajar Kurikulum Berbasis Cinta (KBC) Seni Budaya & Prakarya",
+    "imageUrl": "/data/og_mapel_seni_budaya_prakarya.jpg?v=1786358310606",
+    "updatedAt": "2026-08-10T10:38:30.606Z"
+  }
+}
